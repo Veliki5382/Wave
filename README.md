@@ -1,2 +1,2 @@
-# Wave-
+# Wave
 Solid game engine.
