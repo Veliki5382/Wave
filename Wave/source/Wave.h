@@ -1,6 +1,13 @@
 #pragma once
 
-namespace wave {
-	int a, b;
-	void Print();
-}
+// Main header for Wave Engine application users to call.
+
+#include "WaveEngine/Application.h"
+
+
+// ---- Entry point --------------------
+
+#include "WaveEngine/EntryPoint.h"
+
+
+// -------------------------------------

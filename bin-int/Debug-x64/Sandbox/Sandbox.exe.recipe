@@ -2,7 +2,10 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\kuzma\OneDrive\Desktop\Dev\Wave\bin\Debug-x64\Wave\Wave.exe</FullPath>
+      <FullPath>C:\Dev\Wave\bin\Debug-x64\Wave\Wave.dll</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Dev\Wave\bin\Debug-x64\Sandbox\Sandbox.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

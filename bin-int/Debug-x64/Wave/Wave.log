@@ -1,5 +1,2 @@
-﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(499,5): warning MSB8004: Intermediate Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Intermediate Directory.
-C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(500,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
-  Wave.cpp
-C:\Users\kuzma\OneDrive\Desktop\Dev\Wave\Wave\source\Wave.cpp(6,28): error C2375: 'wave::Print': redefinition; different linkage
-C:\Users\kuzma\OneDrive\Desktop\Dev\Wave\Wave\source\Wave.h(5): message : see declaration of 'wave::Print'
+﻿  Application.cpp
+  Wave.vcxproj -> C:\Dev\Wave\bin\Debug-x64\Wave\Wave.dll

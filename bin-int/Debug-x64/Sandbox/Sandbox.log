@@ -1,0 +1,3 @@
+﻿  Sandbox.cpp
+Sandbox.obj : error LNK2019: unresolved external symbol "class wave::Application __cdecl wave::CreateApplication(void)" (?CreateApplication@wave@@YA?AVApplication@1@XZ) referenced in function main
+C:\Dev\Wave\\bin\Debug-x64\Sandbox\Sandbox.exe : fatal error LNK1120: 1 unresolved externals
