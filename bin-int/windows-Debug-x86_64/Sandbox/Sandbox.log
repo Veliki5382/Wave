@@ -1,0 +1,23 @@
+﻿  Sandbox.cpp
+C:\Dev\Wave\Wave\source\WaveEngine\Log.h(21,42): warning C4251: 'wave::log::s_ClientLog': class 'std::shared_ptr<spdlog::logger>' needs to have dll-interface to be used by clients of class 'wave::log'
+C:\Dev\Wave\Wave\include\spdlog\details\registry.h(34): message : see declaration of 'std::shared_ptr<spdlog::logger>'
+C:\Dev\Wave\Wave\source\WaveEngine\Log.h(22,42): warning C4251: 'wave::log::s_CoreLog': class 'std::shared_ptr<spdlog::logger>' needs to have dll-interface to be used by clients of class 'wave::log'
+C:\Dev\Wave\Wave\include\spdlog\details\registry.h(34): message : see declaration of 'std::shared_ptr<spdlog::logger>'
+C:\Dev\Wave\Wave\source\WaveEngine\Log.h(40,1): warning C4005: 'WAVE_DEBUG': macro redefinition
+C:\Dev\Wave\Wave\source\WaveEngine\Log.h(40,1): message : 'WAVE_DEBUG' previously declared on the command line
+C:\Dev\Wave\Sandbox\source\Sandbox.cpp(3,42): error C2516: 'wave::Application': is not a legal base class
+C:\Dev\Wave\Wave\source\WaveEngine\Events\Event.h(24): message : see declaration of 'wave::Application'
+C:\Dev\Wave\Sandbox\source\Sandbox.cpp(16,25): error C2143: syntax error: missing ';' before 'wave::CreateApplication'
+C:\Dev\Wave\Sandbox\source\Sandbox.cpp(16,42): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Dev\Wave\Sandbox\source\Sandbox.cpp(16,42): error C2365: 'wave::Application': redefinition; previous definition was 'enumerator'
+C:\Dev\Wave\Wave\source\WaveEngine\Events\Event.h(24): message : see declaration of 'wave::Application'
+C:\Dev\Wave\Sandbox\source\Sandbox.cpp(16,42): error C2244: 'wave::Application': unable to match function definition to an existing declaration
+C:\Dev\Wave\Sandbox\source\Sandbox.cpp(16): message : see declaration of 'wave::Application'
+C:\Dev\Wave\Sandbox\source\Sandbox.cpp(16,45): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Dev\Wave\Sandbox\source\Sandbox.cpp(16,45): error C2556: 'int CreateApplication(void)': overloaded function differs only by return type from 'wave::Application wave::CreateApplication(void)'
+C:\Dev\Wave\Wave\source\WaveEngine\Application.h(20): message : see declaration of 'wave::CreateApplication'
+C:\Dev\Wave\Sandbox\source\Sandbox.cpp(16,25): error C2371: 'wave::CreateApplication': redefinition; different basic types
+C:\Dev\Wave\Wave\source\WaveEngine\Application.h(20): message : see declaration of 'wave::CreateApplication'
+C:\Dev\Wave\Sandbox\source\Sandbox.cpp(17,20): error C2146: syntax error: missing ';' before identifier 'app'
+C:\Dev\Wave\Sandbox\source\Sandbox.cpp(17,20): error C2065: 'app': undeclared identifier
+C:\Dev\Wave\Sandbox\source\Sandbox.cpp(18,9): error C2065: 'app': undeclared identifier

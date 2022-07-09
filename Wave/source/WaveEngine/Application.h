@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Core.h"
-#include <iostream>
 
 namespace wave {
 
@@ -9,12 +8,15 @@ namespace wave {
 	public:
 
 		Application();
-		~Application();
+		virtual ~Application();
 
 		void Run();
 
 	};
 
+	
 	// ----- For user to define -----------
+	
 	Application CreateApplication();
-}
+
+} // namespace wave
