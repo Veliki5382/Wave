@@ -7,10 +7,13 @@ namespace wave {
 	class WAVE_API MouseEvent : public Event {
 	
 	public:
-		
-		EventCategory GetEventCategory() const override { return EventCategory(int(EventCategory::Mouse) | int(EventCategory::Input)); }
+		EventCategory GetEventCategory() const override {
+			return EventCategory(int(EventCategory::CategortyMouse) | int(EventCategory::CategortyInput));
+		}
 
 	protected:
+		MouseEvent() {}
+
 	};
 
 	class WAVE_API MouseMovedEvent : public MouseEvent {
@@ -22,6 +25,7 @@ namespace wave {
 		inline double GetX() const { return m_MouseX; }
 		inline double GetY() const { return m_MouseY; }
 
+		static EventType GetStaticType() { return EventType::MouseMoved; }
 		EventType GetEventType() const override { return EventType::MouseMoved; }
 		const char* GetName() const override { return "MouseMoved"; }
 		
@@ -45,6 +49,7 @@ namespace wave {
 		inline double GetYOffset() const { return m_YOffset; }
 
 
+		static EventType GetStaticType() { return EventType::MouseScrolled; }
 		EventType GetEventType() const override { return EventType::MouseScrolled; }
 		const char* GetName() const override { return "MouseScrolled"; }
 
@@ -63,7 +68,9 @@ namespace wave {
 	public:
 		inline int GetMouseButtonCode() const { return m_MouseButtonCode; }
 		
-		EventCategory GetEventCategory() const override { return EventCategory(int(EventCategory::MouseButton) | int(EventCategory::Input)); }
+		EventCategory GetEventCategory() const override {
+			return EventCategory(int(EventCategory::CategortyMouseButton) | int(EventCategory::CategortyInput));
+		}
 
 	protected:
 		int m_MouseButtonCode;
@@ -78,6 +85,7 @@ namespace wave {
 		MouseButtonPressedEvent(int mouseButtonCode)
 			: MouseButtonEvent(mouseButtonCode) {}
 
+		static EventType GetStaticType() { return EventType::MouseButtonPressed; }
 		EventType GetEventType() const override { return EventType::MouseButtonPressed; }
 		const char* GetName() const override { return "MouseButtonPressed"; }
 
@@ -94,6 +102,7 @@ namespace wave {
 		MouseButtonReleasedEvent(int mouseButtonCode)
 			: MouseButtonEvent(mouseButtonCode) {}
 
+		static EventType GetStaticType() { return EventType::MouseButtonReleased; }
 		EventType GetEventType() const override { return EventType::MouseButtonReleased; }
 		const char* GetName() const override { return "MouseButtonReleased"; }
 

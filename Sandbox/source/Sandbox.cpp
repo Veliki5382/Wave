@@ -13,7 +13,7 @@ public:
 
 };
 
-wave::Application wave::CreateApplication() {
-	wave::Application app;
-	return app;
+wave::Application* wave::CreateApplication() {
+	
+	return new Sandbox();
 }

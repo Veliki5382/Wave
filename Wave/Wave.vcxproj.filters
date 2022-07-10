@@ -4,6 +4,9 @@
     <Filter Include="WaveEngine">
       <UniqueIdentifier>{CEDD72A6-BA95-B4F3-239D-8D4F0F744FE4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="WaveEngine\Events">
+      <UniqueIdentifier>{F235676F-5E4C-6505-A7C3-F0261319368D}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Wave.h" />
@@ -20,9 +23,9 @@
       <Filter>WaveEngine</Filter>
     </ClInclude>
     <ClInclude Include="source\WaveEngine\Events\Event.h" />
+    <ClInclude Include="source\WaveEngine\Events\ApplicationEvent.h" />
     <ClInclude Include="source\WaveEngine\Events\KeyEvent.h" />
     <ClInclude Include="source\WaveEngine\Events\MouseEvent.h" />
-    <ClInclude Include="source\WaveEngine\Events\ApplicationEvent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\WaveEngine\Application.cpp">

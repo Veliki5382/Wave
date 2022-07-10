@@ -16,7 +16,7 @@ namespace wave {
 		WindowResizedEvent e(1280, 720);
 		WAVE_TRACE(e);
 
-		while (true);
+		while (true) {}
 	}
 
 } // namespace wave

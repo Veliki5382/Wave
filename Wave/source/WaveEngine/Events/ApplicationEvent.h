@@ -14,8 +14,9 @@ namespace wave {
 		inline unsigned int GetWidth() const { return m_Width; }
 		inline unsigned int GetHeight() const { return m_Height; }
 
-		EventCategory GetEventCategory() const override { return EventCategory::Application; }
+		EventCategory GetEventCategory() const override { return EventCategory::CategoryApplication; }
 
+		static EventType GetStaticType() { return EventType::WindowResized; }
 		EventType GetEventType() const override { return EventType::WindowResized; }
 		const char* GetName() const override { return "WindowResized"; }
 		
@@ -34,8 +35,9 @@ namespace wave {
 	public:
 		WindowClosedEvent() {}
 
-		EventCategory GetEventCategory() const override { return EventCategory::Application; }
+		EventCategory GetEventCategory() const override { return EventCategory::CategoryApplication; }
 
+		static EventType GetStaticType() { return EventType::WindowClosed; }
 		EventType GetEventType() const override { return EventType::WindowClosed; }
 		const char* GetName() const override { return "WindowClosed"; }
 	};
@@ -45,8 +47,9 @@ namespace wave {
 	public:
 		AppTickEvent() {}
 
-		EventCategory GetEventCategory() const override { return EventCategory::Application; }
+		EventCategory GetEventCategory() const override { return EventCategory::CategoryApplication; }
 
+		static EventType GetStaticType() { return EventType::AppTick; }
 		EventType GetEventType() const override { return EventType::AppTick; }
 		const char* GetName() const override { return "AppTick"; }
 	};
@@ -56,8 +59,9 @@ namespace wave {
 	public:
 		AppUpdateEvent() {}
 
-		EventCategory GetEventCategory() const override { return EventCategory::Application; }
+		EventCategory GetEventCategory() const override { return EventCategory::CategoryApplication; }
 
+		static EventType GetStaticType() { return EventType::AppUpdate; }
 		EventType GetEventType() const override { return EventType::AppUpdate; }
 		const char* GetName() const override { return "AppUpdate"; }
 	};
@@ -67,8 +71,9 @@ namespace wave {
 	public:
 		AppRenderEvent() {}
 
-		EventCategory GetEventCategory() const override { return EventCategory::Application; }
+		EventCategory GetEventCategory() const override { return EventCategory::CategoryApplication; }
 
+		static EventType GetStaticType() { return EventType::AppRender; }
 		EventType GetEventType() const override { return EventType::AppRender; }
 		const char* GetName() const override { return "AppRender"; }
 	};

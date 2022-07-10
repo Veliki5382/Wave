@@ -1,10 +1,10 @@
 ﻿  Application.cpp
-C:\Dev\Wave\Wave\source\WaveEngine\Log.h(21,42): warning C4251: 'wave::log::s_ClientLog': class 'std::shared_ptr<spdlog::logger>' needs to have dll-interface to be used by clients of class 'wave::log'
+C:\Dev\Wave\Wave\source\WaveEngine\Log.h(22,42): warning C4251: 'wave::log::s_ClientLog': class 'std::shared_ptr<spdlog::logger>' needs to have dll-interface to be used by clients of class 'wave::log'
 C:\Dev\Wave\Wave\include\spdlog\details\registry.h(34): message : see declaration of 'std::shared_ptr<spdlog::logger>'
-C:\Dev\Wave\Wave\source\WaveEngine\Log.h(22,42): warning C4251: 'wave::log::s_CoreLog': class 'std::shared_ptr<spdlog::logger>' needs to have dll-interface to be used by clients of class 'wave::log'
+C:\Dev\Wave\Wave\source\WaveEngine\Log.h(23,42): warning C4251: 'wave::log::s_CoreLog': class 'std::shared_ptr<spdlog::logger>' needs to have dll-interface to be used by clients of class 'wave::log'
 C:\Dev\Wave\Wave\include\spdlog\details\registry.h(34): message : see declaration of 'std::shared_ptr<spdlog::logger>'
-C:\Dev\Wave\Wave\source\WaveEngine\Log.h(40,1): warning C4005: 'WAVE_DEBUG': macro redefinition
-C:\Dev\Wave\Wave\source\WaveEngine\Log.h(40,1): message : 'WAVE_DEBUG' previously declared on the command line
+C:\Dev\Wave\Wave\source\WaveEngine\Log.h(41,1): warning C4005: 'WAVE_DEBUG': macro redefinition
+C:\Dev\Wave\Wave\source\WaveEngine\Log.h(41,1): message : 'WAVE_DEBUG' previously declared on the command line
 C:\Dev\Wave\Wave\include\spdlog\fmt\bundled\core.h(1728,7): error C2338: static_assert failed: 'Cannot format an argument. To make type T formattable provide a formatter<T> specialization: https://fmt.dev/latest/api.html#udt'
 C:\Dev\Wave\Wave\include\spdlog\fmt\bundled\core.h(1849): message : see reference to function template instantiation 'fmt::v8::detail::value<Context> fmt::v8::detail::make_arg<true,Context,fmt::v8::detail::type::custom_type,const T&,0>(const wave::WindowResizedEvent&)' being compiled
           with
@@ -52,3 +52,11 @@ C:\Dev\Wave\Wave\source\WaveEngine\Application.cpp(17): message : see reference 
           [
               T=wave::WindowResizedEvent
           ]
+  Log.cpp
+C:\Dev\Wave\Wave\source\WaveEngine\Log.h(22,42): warning C4251: 'wave::log::s_ClientLog': class 'std::shared_ptr<spdlog::logger>' needs to have dll-interface to be used by clients of class 'wave::log'
+C:\Dev\Wave\Wave\include\spdlog\details\registry.h(34): message : see declaration of 'std::shared_ptr<spdlog::logger>'
+C:\Dev\Wave\Wave\source\WaveEngine\Log.h(23,42): warning C4251: 'wave::log::s_CoreLog': class 'std::shared_ptr<spdlog::logger>' needs to have dll-interface to be used by clients of class 'wave::log'
+C:\Dev\Wave\Wave\include\spdlog\details\registry.h(34): message : see declaration of 'std::shared_ptr<spdlog::logger>'
+C:\Dev\Wave\Wave\source\WaveEngine\Log.h(41,1): warning C4005: 'WAVE_DEBUG': macro redefinition
+C:\Dev\Wave\Wave\source\WaveEngine\Log.h(41,1): message : 'WAVE_DEBUG' previously declared on the command line
+  Generating Code...

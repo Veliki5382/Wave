@@ -9,10 +9,11 @@
 
 #include "WaveEngine/Application.h"
 #include "WaveEngine/Log.h"
+#include "WaveEngine/Core.h"
 #include "WaveEngine/Events/Event.h"
+#include "WaveEngine/Events/ApplicationEvent.h"
 #include "WaveEngine/Events/KeyEvent.h"
 #include "WaveEngine/Events/MouseEvent.h"
-#include "WaveEngine/Events/ApplicationEvent.h"
 
 // ---- Entry point --------------------
 

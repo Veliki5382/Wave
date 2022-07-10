@@ -25,4 +25,4 @@
 #endif
 
 
-#define WAVE_BIT(x) 1 << x
+#define WAVE_BIT(x) (1 << (x))

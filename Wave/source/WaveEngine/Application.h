@@ -17,6 +17,6 @@ namespace wave {
 	
 	// ----- For user to define -----------
 	
-	Application CreateApplication();
+	Application* CreateApplication();
 
 } // namespace wave

@@ -9,7 +9,9 @@ namespace wave {
 	public:
 		inline int GetKeyCode() const { return m_KeyCode; }
 
-		EventCategory GetEventCategory() const override { return EventCategory(int(EventCategory::Keyboard) | int(EventCategory::Input)); }
+		EventCategory GetEventCategory() const override {
+			return EventCategory(int(EventCategory::CategortyKeyboard) | int(EventCategory::CategortyInput));
+		}
 
 	protected:
 		int m_KeyCode;
@@ -27,6 +29,7 @@ namespace wave {
 
 		inline int GetRepeatNumber() const { return m_RepeatNumber; }
 
+		static EventType GetStaticType() { return EventType::KeyPressed; }
 		EventType GetEventType() const override { return EventType::KeyPressed; }
 		const char* GetName() const override { return "KeyPressed"; }
 		std::string ToString() const override {
@@ -46,6 +49,7 @@ namespace wave {
 		KeyReleasedEvent(int keyCode)
 			: KeyEvent(keyCode) {}
 
+		static EventType GetStaticType() { return EventType::KeyReleased; }
 		EventType GetEventType() const override { return EventType::KeyReleased; }
 		const char* GetName() const override { return "KeyReleased"; }
 		std::string ToString() const override {

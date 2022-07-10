@@ -9,7 +9,7 @@ namespace wave {
 	// need to implement multi-thread system so it can
 	// run parrarel to application.
 
-
+	
 	enum class EventType {
 		invalid = 0,
 		WindowClosed, WindowResized, WindowFocused, WindowUnfocused, WindowMoved,
@@ -18,16 +18,16 @@ namespace wave {
 		MouseMoved, MouseScrolled,
 		MouseButtonPressed, MouseButtonReleased
 	};
-
+	
 	enum EventCategory {
-		invalid		=	0,
-		Application	=	WAVE_BIT(0),
-		Input		=	WAVE_BIT(1),
-		Keyboard	=	WAVE_BIT(2),
-		Mouse		=	WAVE_BIT(3),
-		MouseButton =	WAVE_BIT(4)
+		invalid					=	0,
+		CategoryApplication		=	WAVE_BIT(0),
+		CategortyInput			=	WAVE_BIT(1),
+		CategortyKeyboard		=	WAVE_BIT(2),
+		CategortyMouse			=	WAVE_BIT(3),
+		CategortyMouseButton	=	WAVE_BIT(4)
 	};
-
+	
 	class WAVE_API Event {
 		friend class EventDispatcher;
 
@@ -35,9 +35,9 @@ namespace wave {
 		Event() {}
 		~Event() {}
 
-		virtual EventType GetEventType() const;
-		virtual const char* GetName() const;
-		virtual EventCategory GetEventCategory() const;
+		virtual EventType GetEventType() const = 0;
+		virtual const char* GetName() const = 0 ;
+		virtual EventCategory GetEventCategory() const = 0;
 		virtual std::string ToString() const { return GetName(); }
 
 		bool InCategory(EventCategory category) {
@@ -50,7 +50,7 @@ namespace wave {
 	};
 
 
-	class EventDispatcher {
+	class WAVE_API EventDispatcher {
 		
 		template<typename T>
 		using EventFunction = std::function<bool(T&)>;
@@ -61,7 +61,7 @@ namespace wave {
 
 		template<typename T>
 		bool Dispatch(EventFunction<T> func) {
-			if (m_Event.GetEventType() == T::GetEventType()) {
+				if (m_Event.GetEventType() == T::GetStaticType()) {
 				m_Event.m_Handled = func(*(T*)&m_Event);
 				return true;
 			}
@@ -74,5 +74,5 @@ namespace wave {
 		Event& m_Event;
 
 	};
-
+	
 } // namespace wave
