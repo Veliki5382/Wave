@@ -1,7 +1,8 @@
+#include "wavepch.h"
 #include "Application.h"
 
 #include "Events/ApplicationEvent.h"
-#include "Log.h"
+#include "Events/MouseEvent.h"
 
 namespace wave {
 
@@ -13,10 +14,12 @@ namespace wave {
 	}
 
 	void Application::Run() {
-		WindowResizedEvent e(1280, 720);
+		WindowResizedEvent e(6436436, 46);
 		WAVE_TRACE(e);
+		MouseMovedEvent vent(250, 620);
+		WAVE_TRACE(vent);
 
-		while (true) {}
+		while (true);
 	}
 
 } // namespace wave

@@ -19,13 +19,24 @@
     <ClInclude Include="source\WaveEngine\EntryPoint.h">
       <Filter>WaveEngine</Filter>
     </ClInclude>
+    <ClInclude Include="source\WaveEngine\Events\ApplicationEvent.h">
+      <Filter>WaveEngine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="source\WaveEngine\Events\Event.h">
+      <Filter>WaveEngine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="source\WaveEngine\Events\KeyEvent.h">
+      <Filter>WaveEngine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="source\WaveEngine\Events\MouseEvent.h">
+      <Filter>WaveEngine\Events</Filter>
+    </ClInclude>
     <ClInclude Include="source\WaveEngine\Log.h">
       <Filter>WaveEngine</Filter>
     </ClInclude>
-    <ClInclude Include="source\WaveEngine\Events\Event.h" />
-    <ClInclude Include="source\WaveEngine\Events\ApplicationEvent.h" />
-    <ClInclude Include="source\WaveEngine\Events\KeyEvent.h" />
-    <ClInclude Include="source\WaveEngine\Events\MouseEvent.h" />
+    <ClInclude Include="source\wavepch.h" />
+    <ClInclude Include="source\WaveEngine\Window.h" />
+    <ClInclude Include="source\Platform\Windows\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\WaveEngine\Application.cpp">
@@ -34,5 +45,7 @@
     <ClCompile Include="source\WaveEngine\Log.cpp">
       <Filter>WaveEngine</Filter>
     </ClCompile>
+    <ClCompile Include="source\wavepch.cpp" />
+    <ClCompile Include="source\Platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>
 </Project>

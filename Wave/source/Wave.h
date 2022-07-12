@@ -1,11 +1,13 @@
-#pragma once
+#ifndef WAVE_H
+#define WAVE_H
+
+// Main header file for Wave Engine application users to call.
+// ----------------------------------------------------------
 
 
-// Main header for Wave Engine application users to call.
+// Precompiled header
+//#include "source/wavepch.h"
 
-#include <iostream>
-#include <string>
-#include <sstream>
 
 #include "WaveEngine/Application.h"
 #include "WaveEngine/Log.h"
@@ -21,3 +23,5 @@
 
 
 // -------------------------------------
+
+#endif

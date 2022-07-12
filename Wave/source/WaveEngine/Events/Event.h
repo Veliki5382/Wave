@@ -1,7 +1,10 @@
-#pragma once
+#ifndef EVENT_H
+#define EVENT_H
 
-#include <string>
-#include <functional>
+#include "wavepch.h"
+#include "spdlog/spdlog.h"
+#include "spdlog/fmt/ostr.h" // for OStream overriding
+
 
 namespace wave {
 
@@ -9,7 +12,7 @@ namespace wave {
 	// need to implement multi-thread system so it can
 	// run parrarel to application.
 
-	
+
 	enum class EventType {
 		invalid = 0,
 		WindowClosed, WindowResized, WindowFocused, WindowUnfocused, WindowMoved,
@@ -18,25 +21,31 @@ namespace wave {
 		MouseMoved, MouseScrolled,
 		MouseButtonPressed, MouseButtonReleased
 	};
-	
+
 	enum EventCategory {
-		invalid					=	0,
-		CategoryApplication		=	WAVE_BIT(0),
-		CategortyInput			=	WAVE_BIT(1),
-		CategortyKeyboard		=	WAVE_BIT(2),
-		CategortyMouse			=	WAVE_BIT(3),
-		CategortyMouseButton	=	WAVE_BIT(4)
+		invalid = 0,
+		CategoryApplication = WAVE_BIT(0),
+		CategoryInput = WAVE_BIT(1),
+		CategoryKeyboard = WAVE_BIT(2),
+		CategoryMouse = WAVE_BIT(3),
+		CategoryMouseButton = WAVE_BIT(4)
 	};
-	
+
 	class WAVE_API Event {
 		friend class EventDispatcher;
+
+		template<typename OStream>
+		friend OStream& operator<<(OStream& os, const Event& e) {
+
+			return os << e.ToString();
+		}
 
 	public:
 		Event() {}
 		~Event() {}
 
 		virtual EventType GetEventType() const = 0;
-		virtual const char* GetName() const = 0 ;
+		virtual const char* GetName() const = 0;
 		virtual EventCategory GetEventCategory() const = 0;
 		virtual std::string ToString() const { return GetName(); }
 
@@ -51,7 +60,7 @@ namespace wave {
 
 
 	class WAVE_API EventDispatcher {
-		
+
 		template<typename T>
 		using EventFunction = std::function<bool(T&)>;
 
@@ -61,7 +70,7 @@ namespace wave {
 
 		template<typename T>
 		bool Dispatch(EventFunction<T> func) {
-				if (m_Event.GetEventType() == T::GetStaticType()) {
+			if (m_Event.GetEventType() == T::GetStaticType()) {
 				m_Event.m_Handled = func(*(T*)&m_Event);
 				return true;
 			}
@@ -74,5 +83,15 @@ namespace wave {
 		Event& m_Event;
 
 	};
-	
+
+
+	inline std::ostream& operator<<(std::ostream& os, const Event& e) {
+		
+		return os << e.ToString();
+	}
+
+
+
 } // namespace wave
+
+#endif

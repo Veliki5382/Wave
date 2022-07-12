@@ -1,10 +1,10 @@
-#pragma once
+#ifndef LOG_H
+#define LOG_H
 
+//#include "source/wavepch.h"
 #include "Core.h"
 #include "spdlog/spdlog.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
-#include "spdlog/sinks/basic_file_sink.h"
-#include "spdlog/fmt/ostr.h"
 
 namespace wave {
 
@@ -14,9 +14,10 @@ namespace wave {
 		log();
 		~log();
 
+		inline static void Init();
+
 		inline static std::shared_ptr<spdlog::logger> GetClientLog() { return s_ClientLog; }
 		inline static std::shared_ptr<spdlog::logger> GetCoreLog() { return s_CoreLog; }
-		inline static void Init();
 
 	private:
 		static std::shared_ptr<spdlog::logger> s_ClientLog;
@@ -45,3 +46,5 @@ namespace wave {
 #define WAVE_FATAL(...)		wave::log::GetClientLog()->fatal(__VA_ARGS__)
 
 //-----------------------------------------------------------------------------------
+
+#endif

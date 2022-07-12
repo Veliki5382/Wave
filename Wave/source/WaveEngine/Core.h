@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CORE_H
+#define CORE_H
+
 
 #ifdef WAVE_PLATFORM_WINDOWS
 
@@ -26,3 +28,6 @@
 
 
 #define WAVE_BIT(x) (1 << (x))
+
+
+#endif

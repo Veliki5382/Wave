@@ -1,5 +1,7 @@
-#pragma once
+#ifndef MOUSE_EVENT_H
+#define MOUSE_EVENT_H
 
+#include "wavepch.h"
 #include "Event.h"
 
 namespace wave {
@@ -8,7 +10,7 @@ namespace wave {
 	
 	public:
 		EventCategory GetEventCategory() const override {
-			return EventCategory(int(EventCategory::CategortyMouse) | int(EventCategory::CategortyInput));
+			return EventCategory(int(EventCategory::CategoryMouse) | int(EventCategory::CategoryInput));
 		}
 
 	protected:
@@ -69,7 +71,7 @@ namespace wave {
 		inline int GetMouseButtonCode() const { return m_MouseButtonCode; }
 		
 		EventCategory GetEventCategory() const override {
-			return EventCategory(int(EventCategory::CategortyMouseButton) | int(EventCategory::CategortyInput));
+			return EventCategory(int(EventCategory::CategoryMouseButton) | int(EventCategory::CategoryInput));
 		}
 
 	protected:
@@ -114,3 +116,5 @@ namespace wave {
 	};
 
 } // namespace wave
+
+#endif

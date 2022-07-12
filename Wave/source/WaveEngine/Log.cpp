@@ -1,4 +1,4 @@
-#include "Log.h"
+#include "wavepch.h"
 
 
 namespace wave {
@@ -6,14 +6,8 @@ namespace wave {
 	std::shared_ptr<spdlog::logger> log::s_ClientLog;
 	std::shared_ptr<spdlog::logger> log::s_CoreLog;
 
-	log::log() {
 
-	}
-	log::~log() {
-
-	}
-
-	inline void log::Init() {
+	void log::Init() {
 		
 		spdlog::set_pattern("%^[%n][%l][%H:%M:%S:%e %p]%$ %v");
 

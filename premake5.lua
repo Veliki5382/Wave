@@ -20,8 +20,13 @@ project "Wave"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	
+	pchheader "wavepch.h"
+	pchsource "Wave/source/wavepch.cpp"
+
 	files {
-		"%{prj.name}/source/Wave.h",
+		"%{prj.name}/source/**.h",
+		"%{prj.name}/source/**.cpp",
 		"%{prj.name}/source/WaveEngine/**.h",	
 		"%{prj.name}/source/WaveEngine/**.cpp",
 		"%{prj.name}/source/WaveEngine/Events/**.h"
@@ -32,11 +37,12 @@ project "Wave"
 		"%{prj.name}/source/",
 		"%{prj.name}/include/"
 	}
+
 	
 	--- FILTERS --------------------------------------
 
 	filter "system:windows"
-		cppdialect "C++17	"
+		cppdialect "C++17"
 		staticruntime "On"
 		systemversion "10.0"
 
@@ -95,6 +101,9 @@ project "Sandbox"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	pchheader "wavepch.h"
+	pchsource "Wave/source/wavepch.cpp"
 
 	files {
 		"%{prj.name}/source/**.h",	

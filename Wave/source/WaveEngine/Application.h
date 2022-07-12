@@ -1,5 +1,7 @@
-#pragma once
+#ifndef APPLICATION_H
+#define APPLICATION_H
 
+//#include "source/wavepch.h"
 #include "Core.h"
 
 namespace wave {
@@ -20,3 +22,5 @@ namespace wave {
 	Application* CreateApplication();
 
 } // namespace wave
+
+#endif

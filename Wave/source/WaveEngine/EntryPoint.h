@@ -1,4 +1,7 @@
-#pragma once
+#ifndef ENTRY_POINT_H
+#define ENTRY_POINT_H
+
+//#include "source/wavepch.h"
 
 #ifdef WAVE_PLATFORM_WINDOWS
 
@@ -21,5 +24,6 @@ int main(int argc, char** argv) {
 	return 0;
 }
 
-#endif
+#endif // WAVE_PLATFORM_WINDOWS
 
+#endif

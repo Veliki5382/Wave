@@ -1,7 +1,8 @@
-#pragma once
+#ifndef APPLICATION_EVENT_H
+#define APPLICATION_EVENT_H
 
+#include "wavepch.h"
 #include "Event.h"
-#include <sstream>
 
 namespace wave {
 
@@ -55,7 +56,7 @@ namespace wave {
 	};
 
 	class WAVE_API AppUpdateEvent : public Event {
-
+		 
 	public:
 		AppUpdateEvent() {}
 
@@ -79,3 +80,5 @@ namespace wave {
 	};
 
 } // namespace wave
+
+#endif

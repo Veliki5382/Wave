@@ -1,5 +1,7 @@
-#pragma once
+#ifndef KEY_EVENT_H
+#define KEY_EVENT_H
 
+//#include "source/wavepch.h"
 #include "Event.h"
 
 namespace wave {
@@ -10,7 +12,7 @@ namespace wave {
 		inline int GetKeyCode() const { return m_KeyCode; }
 
 		EventCategory GetEventCategory() const override {
-			return EventCategory(int(EventCategory::CategortyKeyboard) | int(EventCategory::CategortyInput));
+			return EventCategory(int(EventCategory::CategoryKeyboard) | int(EventCategory::CategoryInput));
 		}
 
 	protected:
@@ -61,3 +63,5 @@ namespace wave {
 	};
 
 } // namespace wave
+
+#endif
