@@ -10,6 +10,13 @@ workspace "Wave"
 outputdir = "%{cfg.system}-%{cfg.buildcfg}-%{cfg.architecture}"
 
 
+--  include Dirs relative to $(SolutionDir)
+IncludeDir = {}
+IncludeDir["GLFW"] = "Wave/include/GLFW/include/"
+
+
+include "Wave/include/GLFW/premake5.lua"
+
 --- PROJECT WAVE ---------------------------------------------------
 
 project "Wave"
@@ -27,6 +34,8 @@ project "Wave"
 	files {
 		"%{prj.name}/source/**.h",
 		"%{prj.name}/source/**.cpp",
+		"%{prj.name}/source/Platform/Windows/**.h",
+		"%{prj.name}/source/Platform/Windows/**.cpp",
 		"%{prj.name}/source/WaveEngine/**.h",	
 		"%{prj.name}/source/WaveEngine/**.cpp",
 		"%{prj.name}/source/WaveEngine/Events/**.h"
@@ -35,7 +44,13 @@ project "Wave"
 	includedirs {
 		"%{prj.name}/",
 		"%{prj.name}/source/",
-		"%{prj.name}/include/"
+		"%{prj.name}/include/",
+		"%{IncludeDir.GLFW}/"	
+	}
+
+	links {
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	
@@ -43,7 +58,7 @@ project "Wave"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
+		staticruntime "Off"
 		systemversion "10.0"
 
 		defines {
@@ -56,7 +71,7 @@ project "Wave"
 		}
 
 	filter "system:mac"
-		staticruntime "On"
+		staticruntime "Off"
 		systemversion "latest"
 
 		defines {
@@ -64,7 +79,7 @@ project "Wave"
 		}
 
 	filter "system:linux"
-		staticruntime "On"
+		staticruntime "Off"
 		systemversion "latest"
 
 		defines {
@@ -101,9 +116,6 @@ project "Sandbox"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-
-	pchheader "wavepch.h"
-	pchsource "Wave/source/wavepch.cpp"
 
 	files {
 		"%{prj.name}/source/**.h",	

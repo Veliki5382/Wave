@@ -1,12 +1,4 @@
-﻿  wavepch.cpp
-C:\Dev\Wave\Wave\source\WaveEngine\Log.h(23,42): warning C4251: 'wave::log::s_ClientLog': class 'std::shared_ptr<spdlog::logger>' needs to have dll-interface to be used by clients of class 'wave::log'
-C:\Dev\Wave\Wave\include\spdlog\details\registry.h(34): message : see declaration of 'std::shared_ptr<spdlog::logger>'
-C:\Dev\Wave\Wave\source\WaveEngine\Log.h(24,42): warning C4251: 'wave::log::s_CoreLog': class 'std::shared_ptr<spdlog::logger>' needs to have dll-interface to be used by clients of class 'wave::log'
-C:\Dev\Wave\Wave\include\spdlog\details\registry.h(34): message : see declaration of 'std::shared_ptr<spdlog::logger>'
-C:\Dev\Wave\Wave\source\WaveEngine\Log.h(42,1): warning C4005: 'WAVE_DEBUG': macro redefinition
-C:\Dev\Wave\Wave\source\WaveEngine\Log.h(42,1): message : 'WAVE_DEBUG' previously declared on the command line
-  Application.cpp
-  Log.cpp
-  Generating Code...
+﻿  Application.cpp
+     Creating library ..\bin\windows-Debug-x86_64\Wave\Wave.lib and object ..\bin\windows-Debug-x86_64\Wave\Wave.exp
   Wave.vcxproj -> C:\Dev\Wave\bin\windows-Debug-x86_64\Wave\Wave.dll
           1 file(s) copied.

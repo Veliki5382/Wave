@@ -3,6 +3,7 @@
 
 //#include "source/wavepch.h"
 #include "Core.h"
+#include "Platform/Windows/WindowsWindow.h"
 
 namespace wave {
 
@@ -13,7 +14,10 @@ namespace wave {
 		virtual ~Application();
 
 		void Run();
-
+		
+	private:
+		Window* m_Window;
+		bool m_Running;
 	};
 
 	
