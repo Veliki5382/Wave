@@ -3,6 +3,7 @@
 
 #include "wavepch.h"
 
+#include "Events/Event.h"
 #include "Core.h"
 
 namespace wave {
@@ -20,13 +21,16 @@ namespace wave {
 	class WAVE_API Window {
 
 	public:
+		using EventCallbackFunction = std::function<void(Event&)>;
+		
 		virtual ~Window() {}
 
 		inline virtual unsigned int GetWidth() const = 0;
 		inline virtual unsigned int GetHeight() const = 0;
 		
+		virtual inline void SetEventCallbackFunction(const EventCallbackFunction& callEvent) = 0;
 		virtual bool VSyncStatus() const = 0;
-		virtual void SetVSync(bool status) = 0;
+		virtual inline void SetVSync(bool status) = 0;
 
 		virtual void OnUpdate() = 0;
 

@@ -27,21 +27,21 @@ namespace wave {
 
 	public:
 		KeyPressedEvent(int keyCode, int repeatNumber) 
-			: KeyEvent(keyCode), m_RepeatNumber(repeatNumber) {}
+			: KeyEvent(keyCode), m_Repeat(repeatNumber) {}
 
-		inline int GetRepeatNumber() const { return m_RepeatNumber; }
+		inline int GetRepeatNumber() const { return m_Repeat; }
 
 		static EventType GetStaticType() { return EventType::KeyPressed; }
 		EventType GetEventType() const override { return EventType::KeyPressed; }
 		const char* GetName() const override { return "KeyPressed"; }
 		std::string ToString() const override {
 			std::stringstream ss;
-			ss << "Key Pressed: " << m_KeyCode << " (" << m_RepeatNumber << " times)";
+			ss << "Key Pressed: " << m_KeyCode << " (" << m_Repeat << " times)";
 			return ss.str();
 		}
 
 	private:
-		int m_RepeatNumber;
+		int m_Repeat;
 
 	};
 

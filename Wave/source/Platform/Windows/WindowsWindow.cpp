@@ -2,9 +2,13 @@
 
 #include "GLFW/glfw3.h"
 #include "WindowsWindow.h"
+#include "WaveEngine/Events/KeyEvent.h"
+#include "WaveEngine/Events/MouseEvent.h"
+#include "WaveEngine/Events/ApplicationEvent.h"
+
 
 namespace wave {
-	
+
 	static bool s_GLFWInitialized = false;
 
 	Window* Window::Create(WindowProps& props) {
@@ -13,17 +17,22 @@ namespace wave {
 	}
 
 	WindowsWindow::WindowsWindow(const WindowProps& props) {
-		
+
 		OnStartup(props);
 	}
 
 	WindowsWindow::~WindowsWindow() {
-		
+
 		Shutdown();
 	}
-	
+
+	void glfwErrorCallback(int error, const char* description) {
+
+		WAVE_CORE_ERROR("GLFW Error {0}: {1}", error, description);
+	}
+
 	void WindowsWindow::OnStartup(const WindowProps& props) {
-		
+
 		m_Data.Title = props.Title;
 		m_Data.Height = props.Height;
 		m_Data.Width = props.Width;
@@ -32,21 +41,105 @@ namespace wave {
 		WAVE_CORE_INFO("Window \"{0}\" has been created, with size of ({1}, {2}).", m_Data.Title, m_Data.Width, m_Data.Height);
 
 		if (s_GLFWInitialized == false) {
-			
+
 			int done = glfwInit();
 			WAVE_ASSERT(done, "Could not initialize GLFW!");
 
 			s_GLFWInitialized = true;
 		}
-		
+
 		m_Window = glfwCreateWindow(m_Data.Width, m_Data.Height, m_Data.Title.c_str(), NULL, NULL);
 		glfwMakeContextCurrent(m_Window);
+		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
+
+		glfwSetErrorCallback(glfwErrorCallback);
+
+		// ------ GLFW Event Callback functions ---------------------------------------
+
+		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height) {
+			
+			WindowData* data = (WindowData*)glfwGetWindowUserPointer(window);
+			data->Width = width;
+			data->Height = height;
+
+			WindowResizedEvent event(width, height);
+			data->eventCallbackFn(event);
+		});
+
+		glfwSetWindowCloseCallback(m_Window, [](GLFWwindow* window) {
+
+			WindowData* data = (WindowData*)glfwGetWindowUserPointer(window);
+
+			WindowClosedEvent event;
+			data->eventCallbackFn(event);
+		});
+		
+
+		glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
+			
+			WindowData* data = (WindowData*)glfwGetWindowUserPointer(window);
+
+			switch (action) {
+				case GLFW_PRESS: {
+					KeyPressedEvent event(key, 0);
+					data->eventCallbackFn(event);
+					break;
+				}
+				case GLFW_RELEASE: {
+					KeyReleasedEvent event(key);
+					data->eventCallbackFn(event);
+					data->m_RepeatNumber = 0;
+					break;
+				}
+				case GLFW_REPEAT: {
+					KeyPressedEvent event(key, ++data->m_RepeatNumber);
+					data->eventCallbackFn(event);
+					break;
+				}
+			}
+
+		});
+
+		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods) {
+
+			WindowData* data = (WindowData*)glfwGetWindowUserPointer(window);
+
+			switch (action) {
+				case GLFW_PRESS: {
+					MouseButtonPressedEvent event(button);
+					data->eventCallbackFn(event);
+					break;
+				}
+				case GLFW_RELEASE: {
+					MouseButtonReleasedEvent event(button);
+					data->eventCallbackFn(event);
+					break;
+				}
+			}
+					
+		});
+
+		glfwSetScrollCallback(m_Window, [](GLFWwindow* window, double xOffset, double yOffset) {
+
+			WindowData* data = (WindowData*)glfwGetWindowUserPointer(window);
+
+			MouseScrolledEvent event(xOffset, yOffset);
+			data->eventCallbackFn(event);
+		});
+
+		glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, double xPos, double yPos) {
+
+			WindowData* data = (WindowData*)glfwGetWindowUserPointer(window);
+
+			MouseMovedEvent event(xPos, yPos);
+			data->eventCallbackFn(event);
+		});
 
 	}
 
 	void WindowsWindow::Shutdown() {
-	
+
 		glfwDestroyWindow(m_Window);
 	}
 
@@ -56,11 +149,11 @@ namespace wave {
 	}
 
 	bool WindowsWindow::VSyncStatus() const {
-		
+
 		return m_Data.VSync;
 	}
 
-	void WindowsWindow::SetVSync(const bool status) {
+	inline void WindowsWindow::SetVSync(const bool status) {
 
 		if (status == true) {
 			glfwSwapInterval(1);

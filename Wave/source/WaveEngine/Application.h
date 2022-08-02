@@ -4,6 +4,7 @@
 //#include "source/wavepch.h"
 #include "Core.h"
 #include "Platform/Windows/WindowsWindow.h"
+#include "Events/ApplicationEvent.h"
 
 namespace wave {
 
@@ -15,7 +16,11 @@ namespace wave {
 
 		void Run();
 		
+		void onEvent(Event& e);
+
 	private:
+		bool windowClosed(WindowClosedEvent& e);
+		
 		Window* m_Window;
 		bool m_Running;
 	};

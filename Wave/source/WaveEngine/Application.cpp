@@ -8,16 +8,21 @@
 namespace wave {
 
 	Application::Application() {
-		m_Window = new WindowsWindow(WindowProps("ENGINE", 1600, 900));
+		m_Window = Window::Create();
 		m_Running = true;
-		
+		m_Window->SetEventCallbackFunction(std::bind(&Application::onEvent, this, std::placeholders::_1));
 	}
 	Application::~Application() {
 		delete m_Window;
 	}
 
-	
-
+	void Application::onEvent(Event& e) {
+		
+		EventDispatcher dispatcer(e);
+		dispatcer.Dispatch<WindowClosedEvent>(std::bind(&Application::windowClosed, this, std::placeholders::_1));
+		
+		WAVE_CORE_TRACE("{0}", e);
+	}
 
 	void Application::Run() {
 		//WindowResizedEvent e(6436436, 46);
@@ -32,6 +37,12 @@ namespace wave {
 			glClear(GL_COLOR_BUFFER_BIT);
 			
 		}
+	}
+
+	bool Application::windowClosed(WindowClosedEvent& e) {
+
+		m_Running = false;
+		return true;
 	}
 
 } // namespace wave
