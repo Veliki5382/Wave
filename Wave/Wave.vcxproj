@@ -158,6 +158,8 @@
     <ClInclude Include="source\WaveEngine\Events\Event.h" />
     <ClInclude Include="source\WaveEngine\Events\KeyEvent.h" />
     <ClInclude Include="source\WaveEngine\Events\MouseEvent.h" />
+    <ClInclude Include="source\WaveEngine\Layer.h" />
+    <ClInclude Include="source\WaveEngine\LayerStack.h" />
     <ClInclude Include="source\WaveEngine\Log.h" />
     <ClInclude Include="source\WaveEngine\Window.h" />
     <ClInclude Include="source\wavepch.h" />
@@ -165,6 +167,8 @@
   <ItemGroup>
     <ClCompile Include="source\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="source\WaveEngine\Application.cpp" />
+    <ClCompile Include="source\WaveEngine\Layer.cpp" />
+    <ClCompile Include="source\WaveEngine\LayerStack.cpp" />
     <ClCompile Include="source\WaveEngine\Log.cpp" />
     <ClCompile Include="source\wavepch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>

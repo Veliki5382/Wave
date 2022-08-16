@@ -17,6 +17,8 @@
 #include "WaveEngine/Events/KeyEvent.h"
 #include "WaveEngine/Events/MouseEvent.h"
 #include "WaveEngine/Window.h"
+#include "WaveEngine/Layer.h"
+#include "WaveEngine/LayerStack.h"
 #include "Platform/Windows/WindowsWindow.h"
 
 // ---- Entry point --------------------

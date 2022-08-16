@@ -18,10 +18,21 @@ namespace wave {
 
 	void Application::onEvent(Event& e) {
 		
-		EventDispatcher dispatcer(e);
-		dispatcer.Dispatch<WindowClosedEvent>(std::bind(&Application::windowClosed, this, std::placeholders::_1));
+		EventDispatcher dispatcher(e);
+		dispatcher.Dispatch<WindowClosedEvent>(std::bind(&Application::windowClosed, this, std::placeholders::_1));
 		
 		WAVE_CORE_TRACE("{0}", e);
+
+		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); ) {
+			(*--it)->OnEvent(e);
+			if (e.Handled()) {
+				break;
+			}
+		}
+	}
+
+	void Application::PushLayer(Layer* layer) {
+		m_LayerStack.Push(layer);
 	}
 
 	void Application::Run() {
@@ -31,6 +42,10 @@ namespace wave {
 		//WAVE_TRACE(vent);
 
 		while (m_Running) {
+
+			for (auto it = m_LayerStack.begin(); it != m_LayerStack.end(); ++it) {
+				(*it)->OnUpdate();
+			}
 
 			m_Window->OnUpdate();
 			glClearColor(1, 1, 0, 1);

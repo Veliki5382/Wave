@@ -36,7 +36,7 @@ namespace wave {
 			std::string Title;
 			unsigned int Width, Height;
 			
-			unsigned int m_RepeatNumber;
+			unsigned int m_RepeatNumber = 0;
 			bool VSync;
 			EventCallbackFunction eventCallbackFn;
 		};

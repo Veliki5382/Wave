@@ -40,6 +40,12 @@
     <ClInclude Include="source\WaveEngine\Events\MouseEvent.h">
       <Filter>WaveEngine\Events</Filter>
     </ClInclude>
+    <ClInclude Include="source\WaveEngine\Layer.h">
+      <Filter>WaveEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="source\WaveEngine\LayerStack.h">
+      <Filter>WaveEngine</Filter>
+    </ClInclude>
     <ClInclude Include="source\WaveEngine\Log.h">
       <Filter>WaveEngine</Filter>
     </ClInclude>
@@ -53,6 +59,12 @@
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="source\WaveEngine\Application.cpp">
+      <Filter>WaveEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\WaveEngine\Layer.cpp">
+      <Filter>WaveEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\WaveEngine\LayerStack.cpp">
       <Filter>WaveEngine</Filter>
     </ClCompile>
     <ClCompile Include="source\WaveEngine\Log.cpp">

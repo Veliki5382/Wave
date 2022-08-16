@@ -13,9 +13,10 @@ outputdir = "%{cfg.system}-%{cfg.buildcfg}-%{cfg.architecture}"
 --  include Dirs relative to $(SolutionDir)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Wave/include/GLFW/include/"
-
+--IncludeDir["GLAD"] = "Wave/include/GlAD/include/"
 
 include "Wave/include/GLFW/premake5.lua"
+--include "Wave/include/GLAD/premake5.lua"
 
 --- PROJECT WAVE ---------------------------------------------------
 
@@ -45,11 +46,13 @@ project "Wave"
 		"%{prj.name}/",
 		"%{prj.name}/source/",
 		"%{prj.name}/include/",
-		"%{IncludeDir.GLFW}/"	
+		"%{IncludeDir.GLFW}/"
+		--"%{IncludeDir.GLAD}/"
 	}
 
 	links {
 		"GLFW",
+		--"GLAD",
 		"opengl32.lib"
 	}
 
@@ -59,7 +62,7 @@ project "Wave"
 	filter "system:windows"
 		cppdialect "C++17"
 		staticruntime "Off"
-		systemversion "10.0"
+		systemversion "latest"
 
 		defines {
 			"WAVE_PLATFORM_WINDOWS",
@@ -138,7 +141,7 @@ project "Sandbox"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
+		staticruntime "Off"
 		systemversion "10.0"
 
 		defines {
@@ -146,7 +149,7 @@ project "Sandbox"
 		}
 
 	filter "system:mac"
-		staticruntime "On"
+		staticruntime "Off"
 		systemversion "latest"
 
 		defines {
@@ -154,7 +157,7 @@ project "Sandbox"
 		}
 
 	filter "system:linux"
-		staticruntime "On"
+		staticruntime "Off"
 		systemversion "latest"
 
 		defines {

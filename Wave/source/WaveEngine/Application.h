@@ -3,6 +3,7 @@
 
 //#include "source/wavepch.h"
 #include "Core.h"
+#include "LayerStack.h"
 #include "Platform/Windows/WindowsWindow.h"
 #include "Events/ApplicationEvent.h"
 
@@ -18,11 +19,14 @@ namespace wave {
 		
 		void onEvent(Event& e);
 
+		void PushLayer(Layer* layer);
+
 	private:
 		bool windowClosed(WindowClosedEvent& e);
 		
 		Window* m_Window;
 		bool m_Running;
+		LayerStack m_LayerStack;
 	};
 
 	
