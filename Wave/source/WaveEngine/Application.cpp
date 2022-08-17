@@ -5,6 +5,8 @@
 #include "Events/MouseEvent.h"
 #include "Platform/Windows/WindowsWindow.h"
 
+#include <GLAD/glad.h>
+
 namespace wave {
 
 	Application::Application() {
@@ -41,6 +43,8 @@ namespace wave {
 		//MouseMovedEvent vent(250, 620);
 		//WAVE_TRACE(vent);
 
+		gladLoadGL();
+
 		while (m_Running) {
 
 			for (auto it = m_LayerStack.begin(); it != m_LayerStack.end(); ++it) {
@@ -49,7 +53,7 @@ namespace wave {
 
 			m_Window->OnUpdate();
 			glClearColor(1, 1, 0, 1);
-			glClear(GL_COLOR_BUFFER_BIT);
+			glClear(unsigned int(GL_COLOR_BUFFER_BIT));
 			
 		}
 	}

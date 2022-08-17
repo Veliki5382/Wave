@@ -11,7 +11,7 @@ int main(int argc, char** argv) {
 	
 	wave::log::Init();
 	
-	WAVE_INFO("Welcome to Wave Engine!");
+	WAVE_CORE_INFO("Welcome to Wave Engine!");
 
 	wave::Application* app = wave::CreateApplication();
 	app->Run();

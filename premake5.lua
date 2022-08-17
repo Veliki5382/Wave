@@ -13,10 +13,10 @@ outputdir = "%{cfg.system}-%{cfg.buildcfg}-%{cfg.architecture}"
 --  include Dirs relative to $(SolutionDir)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Wave/include/GLFW/include/"
---IncludeDir["GLAD"] = "Wave/include/GlAD/include/"
+IncludeDir["GLAD"] = "Wave/include/GlAD/include/"
 
 include "Wave/include/GLFW/premake5.lua"
---include "Wave/include/GLAD/premake5.lua"
+include "Wave/include/GLAD/premake5.lua"
 
 --- PROJECT WAVE ---------------------------------------------------
 
@@ -46,13 +46,13 @@ project "Wave"
 		"%{prj.name}/",
 		"%{prj.name}/source/",
 		"%{prj.name}/include/",
-		"%{IncludeDir.GLFW}/"
-		--"%{IncludeDir.GLAD}/"
+		"%{IncludeDir.GLFW}/",
+		"%{IncludeDir.GLAD}/"
 	}
 
 	links {
 		"GLFW",
-		--"GLAD",
+		"GLAD",
 		"opengl32.lib"
 	}
 
@@ -66,7 +66,8 @@ project "Wave"
 
 		defines {
 			"WAVE_PLATFORM_WINDOWS",
-			"WAVE_EXPORT_DLL"
+			"WAVE_EXPORT_DLL",
+			"WAVE_INCLUDE_OPENGL"
 		}
 
 		postbuildcommands {

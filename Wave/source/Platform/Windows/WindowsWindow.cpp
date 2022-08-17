@@ -6,6 +6,7 @@
 #include "WaveEngine/Events/MouseEvent.h"
 #include "WaveEngine/Events/ApplicationEvent.h"
 
+#include <GLAD/glad.h>
 
 namespace wave {
 
@@ -43,15 +44,21 @@ namespace wave {
 		if (s_GLFWInitialized == false) {
 
 			int done = glfwInit();
-			WAVE_ASSERT(done, "Could not initialize GLFW!");
+			WAVE_CORE_ASSERT(done, "Could not initialize GLFW!");
+			WAVE_CORE_INFO("Succesfully loaded GLFW!");
 
 			s_GLFWInitialized = true;
 		}
+
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		WAVE_CORE_ASSERT(status, "Failed to initialize GLAD.");
+		WAVE_CORE_INFO("Succesfully loaded GLAD!");
 
 		m_Window = glfwCreateWindow(m_Data.Width, m_Data.Height, m_Data.Title.c_str(), NULL, NULL);
 		glfwMakeContextCurrent(m_Window);
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
+		
 
 		glfwSetErrorCallback(glfwErrorCallback);
 
