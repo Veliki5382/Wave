@@ -14,9 +14,11 @@ outputdir = "%{cfg.system}-%{cfg.buildcfg}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "Wave/include/GLFW/include/"
 IncludeDir["GLAD"] = "Wave/include/GlAD/include/"
+IncludeDir["ImGui"] = "Wave/include/ImGui"
 
 include "Wave/include/GLFW/premake5.lua"
 include "Wave/include/GLAD/premake5.lua"
+include "Wave/include/ImGui/premake5.lua"
 
 --- PROJECT WAVE ---------------------------------------------------
 
@@ -39,7 +41,9 @@ project "Wave"
 		"%{prj.name}/source/Platform/Windows/**.cpp",
 		"%{prj.name}/source/WaveEngine/**.h",	
 		"%{prj.name}/source/WaveEngine/**.cpp",
-		"%{prj.name}/source/WaveEngine/Events/**.h"
+		"%{prj.name}/source/WaveEngine/Events/**.h",
+		"%{prj.name}/source/WaveEngine/ImGui/**.h",
+		"%{prj.name}/source/WaveEngine/ImGui/**.h"
 	}
 
 	includedirs {
@@ -47,12 +51,14 @@ project "Wave"
 		"%{prj.name}/source/",
 		"%{prj.name}/include/",
 		"%{IncludeDir.GLFW}/",
-		"%{IncludeDir.GLAD}/"
+		"%{IncludeDir.GLAD}/",
+		"%{IncludeDir.ImGui}/"
 	}
 
 	links {
 		"GLFW",
 		"GLAD",
+		"ImGui",
 		"opengl32.lib"
 	}
 

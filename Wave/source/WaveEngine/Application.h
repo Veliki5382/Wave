@@ -16,10 +16,12 @@ namespace wave {
 		virtual ~Application();
 
 		void Run();
-		
 		void onEvent(Event& e);
 
 		void PushLayer(Layer* layer);
+
+		inline Window* GetWindow() { return m_Window; }
+		inline static Application* Get() { return s_Instance; }
 
 	private:
 		bool windowClosed(WindowClosedEvent& e);
@@ -27,6 +29,9 @@ namespace wave {
 		Window* m_Window;
 		bool m_Running;
 		LayerStack m_LayerStack;
+	
+	private:
+		static Application* s_Instance;
 	};
 
 	

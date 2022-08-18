@@ -9,8 +9,12 @@
 
 namespace wave {
 
+	Application* Application::s_Instance = nullptr;
+
 	Application::Application() {
-		m_Window = Window::Create();
+		s_Instance = this;
+		WAVE_CORE_ASSERT(!s_Instance, "There is already application instance constructed!");
+		m_Window = Window::Create(WindowProps("Wave", 1280, 720));
 		m_Running = true;
 		m_Window->SetEventCallbackFunction(std::bind(&Application::onEvent, this, std::placeholders::_1));
 	}

@@ -19,5 +19,5 @@ C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.3132
           [
               _Ty=wave::Layer *
           ]
-C:\Dev\Wave\Sandbox\source\Sandbox.cpp(41,1): warning C4506: no definition for inline function 'void wave::log::Init(void)'
+C:\Dev\Wave\Sandbox\source\Sandbox.cpp(43,1): warning C4506: no definition for inline function 'void wave::log::Init(void)'
   Sandbox.vcxproj -> C:\Dev\Wave\bin\windows-Debug-x86_64\Sandbox\Sandbox.exe

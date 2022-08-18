@@ -24,10 +24,10 @@ namespace wave {
 		Layer(std::string name);
 		virtual ~Layer();
 
-		virtual void OnAttach() {};
-		virtual void OnDettach() {};
-		virtual void OnUpdate() {};
-		virtual void OnEvent(Event& e) {};
+		virtual void OnAttach() {}
+		virtual void OnDettach() {}
+		virtual void OnUpdate() {}
+		virtual void OnEvent(Event& e) {}
 
 		std::string GetName() const { return m_Name; }
 

@@ -28,6 +28,7 @@ namespace wave {
 	private:
 		std::vector<Layer*> m_LayerStack;
 		std::vector<Layer*>::iterator m_LayerPointer;
+
 	};
 
 } // namespace wave

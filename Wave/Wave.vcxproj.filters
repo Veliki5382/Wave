@@ -13,6 +13,9 @@
     <Filter Include="WaveEngine\Events">
       <UniqueIdentifier>{F235676F-5E4C-6505-A7C3-F0261319368D}</UniqueIdentifier>
     </Filter>
+    <Filter Include="WaveEngine\ImGui">
+      <UniqueIdentifier>{78F5C99E-64EE-E8F0-8D20-CE757978C8FC}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Platform\Windows\WindowsWindow.h">
@@ -40,6 +43,9 @@
     <ClInclude Include="source\WaveEngine\Events\MouseEvent.h">
       <Filter>WaveEngine\Events</Filter>
     </ClInclude>
+    <ClInclude Include="source\WaveEngine\ImGui\ImGuiLayer.h">
+      <Filter>WaveEngine\ImGui</Filter>
+    </ClInclude>
     <ClInclude Include="source\WaveEngine\Layer.h">
       <Filter>WaveEngine</Filter>
     </ClInclude>
@@ -53,6 +59,8 @@
       <Filter>WaveEngine</Filter>
     </ClInclude>
     <ClInclude Include="source\wavepch.h" />
+    <ClInclude Include="source\Platform\OpenGL\imgui_impl_glfw.h" />
+    <ClInclude Include="source\Platform\OpenGL\imgui_impl_opengl3.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Platform\Windows\WindowsWindow.cpp">
@@ -60,6 +68,9 @@
     </ClCompile>
     <ClCompile Include="source\WaveEngine\Application.cpp">
       <Filter>WaveEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\WaveEngine\ImGui\ImGuiLayer.cpp">
+      <Filter>WaveEngine\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="source\WaveEngine\Layer.cpp">
       <Filter>WaveEngine</Filter>
@@ -71,5 +82,7 @@
       <Filter>WaveEngine</Filter>
     </ClCompile>
     <ClCompile Include="source\wavepch.cpp" />
+    <ClCompile Include="source\Platform\OpenGL\imgui_impl_glfw.cpp" />
+    <ClCompile Include="source\Platform\OpenGL\imgui_impl_opengl3.cpp" />
   </ItemGroup>
 </Project>

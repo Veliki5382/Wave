@@ -1,13 +1,4 @@
-﻿  WindowsWindow.cpp
-C:\Dev\Wave\Wave\include\GlAD\include\GLAD\glad.h(328,1): warning C4005: 'GL_ALL_ATTRIB_BITS': macro redefinition
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\GL\gl.h(107): message : see previous definition of 'GL_ALL_ATTRIB_BITS'
-C:\Dev\Wave\Wave\include\GlAD\include\GLAD\glad.h(416,1): warning C4005: 'GL_LOGIC_OP': macro redefinition
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\GL\gl.h(1152): message : see previous definition of 'GL_LOGIC_OP'
-C:\Dev\Wave\Wave\include\GlAD\include\GLAD\glad.h(500,1): warning C4005: 'GL_TEXTURE_COMPONENTS': macro redefinition
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\GL\gl.h(1153): message : see previous definition of 'GL_TEXTURE_COMPONENTS'
-C:\Dev\Wave\Wave\include\GlAD\include\GLAD\glad.h(594,1): warning C4005: 'GL_CLIENT_ALL_ATTRIB_BITS': macro redefinition
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\GL\gl.h(973): message : see previous definition of 'GL_CLIENT_ALL_ATTRIB_BITS'
-  Application.cpp
+﻿  Application.cpp
 C:\Dev\Wave\Wave\source\WaveEngine\Layer.h(35,15): warning C4251: 'wave::Layer::m_Name': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'wave::Layer'
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xstring(4919): message : see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
 C:\Dev\Wave\Wave\source\WaveEngine\LayerStack.h(29,23): warning C4251: 'wave::LayerStack::m_LayerStack': class 'std::vector<wave::Layer *,std::allocator<wave::Layer *>>' needs to have dll-interface to be used by clients of class 'wave::LayerStack'
@@ -30,6 +21,39 @@ C:\Dev\Wave\Wave\include\GlAD\include\GLAD\glad.h(500,1): warning C4005: 'GL_TEX
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\GL\gl.h(1153): message : see previous definition of 'GL_TEXTURE_COMPONENTS'
 C:\Dev\Wave\Wave\include\GlAD\include\GLAD\glad.h(594,1): warning C4005: 'GL_CLIENT_ALL_ATTRIB_BITS': macro redefinition
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\GL\gl.h(973): message : see previous definition of 'GL_CLIENT_ALL_ATTRIB_BITS'
+  ImGuiLayer.cpp
+C:\Dev\Wave\Wave\source\WaveEngine\Layer.h(35,15): warning C4251: 'wave::Layer::m_Name': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'wave::Layer'
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xstring(4919): message : see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+C:\Dev\Wave\Wave\source\WaveEngine\LayerStack.h(29,23): warning C4251: 'wave::LayerStack::m_LayerStack': class 'std::vector<wave::Layer *,std::allocator<wave::Layer *>>' needs to have dll-interface to be used by clients of class 'wave::LayerStack'
+C:\Dev\Wave\Wave\source\WaveEngine\LayerStack.h(18): message : see declaration of 'std::vector<wave::Layer *,std::allocator<wave::Layer *>>'
+C:\Dev\Wave\Wave\source\WaveEngine\LayerStack.h(30,33): warning C4251: 'wave::LayerStack::m_LayerPointer': class 'std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>' needs to have dll-interface to be used by clients of class 'wave::LayerStack'
+          with
+          [
+              _Ty=wave::Layer *
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\vector(654): message : see declaration of 'std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>'
+          with
+          [
+              _Ty=wave::Layer *
+          ]
+  Layer.cpp
+C:\Dev\Wave\Wave\source\WaveEngine\Layer.h(35,15): warning C4251: 'wave::Layer::m_Name': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'wave::Layer'
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xstring(4919): message : see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+  LayerStack.cpp
+C:\Dev\Wave\Wave\source\WaveEngine\Layer.h(35,15): warning C4251: 'wave::Layer::m_Name': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'wave::Layer'
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xstring(4919): message : see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+C:\Dev\Wave\Wave\source\WaveEngine\LayerStack.h(29,23): warning C4251: 'wave::LayerStack::m_LayerStack': class 'std::vector<wave::Layer *,std::allocator<wave::Layer *>>' needs to have dll-interface to be used by clients of class 'wave::LayerStack'
+C:\Dev\Wave\Wave\source\WaveEngine\LayerStack.h(18): message : see declaration of 'std::vector<wave::Layer *,std::allocator<wave::Layer *>>'
+C:\Dev\Wave\Wave\source\WaveEngine\LayerStack.h(30,33): warning C4251: 'wave::LayerStack::m_LayerPointer': class 'std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>' needs to have dll-interface to be used by clients of class 'wave::LayerStack'
+          with
+          [
+              _Ty=wave::Layer *
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\vector(654): message : see declaration of 'std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>'
+          with
+          [
+              _Ty=wave::Layer *
+          ]
   Generating Code...
   Wave.vcxproj -> C:\Dev\Wave\bin\windows-Debug-x86_64\Wave\Wave.dll
           1 file(s) copied.

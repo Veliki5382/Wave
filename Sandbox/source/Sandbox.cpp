@@ -5,7 +5,7 @@ class MainLayer : public wave::Layer {
 
 public:
 	MainLayer()
-		: Layer("Main") {}
+		: Layer("Main Layer") {}
 	
 
 	
@@ -26,6 +26,8 @@ public:
 	
 	Sandbox() {
 		PushLayer(new MainLayer);
+		PushLayer(new wave::ImGuiLayer);
+
 	}
 
 	~Sandbox() {

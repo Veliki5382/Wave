@@ -17,6 +17,7 @@ namespace wave {
 
 	void LayerStack::Push(Layer* layer) {
 		m_LayerStack.push_back(layer);
+		layer->OnAttach();
 		//m_LayerPointer++;
 	}
 
@@ -24,6 +25,7 @@ namespace wave {
 		std::vector<Layer*>::iterator ptr;
 		for (ptr = m_LayerStack.begin(); ptr != m_LayerStack.end(); ++ptr) {
 			if (*ptr == layer) {
+				(*ptr)->OnDettach();
 				m_LayerStack.erase(ptr);
 				m_LayerPointer--;
 				break;

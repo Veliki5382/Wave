@@ -20,6 +20,7 @@
 #include "WaveEngine/Layer.h"
 #include "WaveEngine/LayerStack.h"
 #include "Platform/Windows/WindowsWindow.h"
+#include "WaveEngine/ImGui/ImGuiLayer.h"
 
 // ---- Entry point --------------------
 
