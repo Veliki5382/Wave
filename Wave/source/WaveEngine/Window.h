@@ -34,6 +34,8 @@ namespace wave {
 
 		virtual void OnUpdate() = 0;
 
+		virtual void* GetNativeWindow() const = 0;
+
 		static Window* Create(WindowProps& props = WindowProps());
 
 	};

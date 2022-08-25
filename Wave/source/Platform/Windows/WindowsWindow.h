@@ -25,6 +25,8 @@ namespace wave {
 		bool VSyncStatus() const override;
 		void SetVSync(const bool status) override;
 		
+		void* GetNativeWindow() const override { return m_Window; }
+
 	private:
 		virtual void OnStartup(const WindowProps& props);
 		virtual void Shutdown();

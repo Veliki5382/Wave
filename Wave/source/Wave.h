@@ -21,6 +21,9 @@
 #include "WaveEngine/LayerStack.h"
 #include "Platform/Windows/WindowsWindow.h"
 #include "WaveEngine/ImGui/ImGuiLayer.h"
+#include "WaveEngine/Input.h"
+#include "WaveEngine/KeyCodes.h"
+#include "WaveEngine/MouseButtonCodes.h"
 
 // ---- Entry point --------------------
 

@@ -17,7 +17,7 @@ namespace wave {
 		invalid = 0,
 		WindowClosed, WindowResized, WindowFocused, WindowUnfocused, WindowMoved,
 		AppTick, AppUpdate, AppRender,
-		KeyPressed, KeyReleased,
+		KeyTyped, KeyPressed, KeyReleased,
 		MouseMoved, MouseScrolled,
 		MouseButtonPressed, MouseButtonReleased
 	};

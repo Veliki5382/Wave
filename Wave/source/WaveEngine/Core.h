@@ -1,7 +1,6 @@
 #ifndef CORE_H
 #define CORE_H
 
-
 #ifdef WAVE_PLATFORM_WINDOWS
 	#ifdef WAVE_EXPORT_DLL
 		#define WAVE_API _declspec(dllexport)
@@ -24,13 +23,15 @@
 
 #define WAVE_BIT(x) (1 << (x))
 
-
 #ifdef WAVE_ASSERT_ENABLED
-	#define WAVE_ASSERT(x, ...) { if(x == false) {WAVE_ERROR(|"Assertion failed: {0}.", __VA_ARGS__); __debugbreak(); } }
-	#define WAVE_CORE_ASSERT(x, ...) { if(x == false) {WAVE_CORE_ERROR(|"Assertion failed: {0}.", __VA_ARGS__); __debugbreak(); } }
+	#define WAVE_ASSERT(x, ...) { if(x == false) {WAVE_ERROR("Assertion failed: {0}.", __VA_ARGS__); __debugbreak(); } }
+	#define WAVE_CORE_ASSERT(x, ...) { if(x == false) {WAVE_CORE_ERROR("Assertion failed: {0}.", __VA_ARGS__); __debugbreak(); } }
 #else
 	#define WAVE_ASSERT(x, ...)
 	#define WAVE_CORE_ASSERT(x, ...)
 #endif
+
+
+#define WAVE_BIND_FN(fn) std::bind(&fn, this, std::placeholders::_1)
 
 #endif // CORE_H

@@ -1,6 +1,8 @@
 workspace "Wave"
 	
 	architecture "x64"
+	startproject "Sandbox"
+
 	configurations {
 		"Debug",
 		"Release",
@@ -14,7 +16,7 @@ outputdir = "%{cfg.system}-%{cfg.buildcfg}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "Wave/include/GLFW/include/"
 IncludeDir["GLAD"] = "Wave/include/GlAD/include/"
-IncludeDir["ImGui"] = "Wave/include/ImGui"
+IncludeDir["ImGui"] = "Wave/include/ImGui/"
 
 include "Wave/include/GLFW/premake5.lua"
 include "Wave/include/GLAD/premake5.lua"
@@ -100,7 +102,8 @@ project "Wave"
 
 	filter "configurations:Debug"
 		defines {
-			"WAVE_DEBUG"
+			"WAVE_DEBUG",
+			"WAVE_ASSERT_ENABLED"
 		}
 		symbols "On"
 

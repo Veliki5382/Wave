@@ -23,6 +23,23 @@ namespace wave {
 	};
 
 
+	class WAVE_API KeyTypedEvent : public KeyEvent {
+	
+	public:
+		KeyTypedEvent(int keyCode)
+			: KeyEvent(keyCode) {}
+
+		static EventType GetStaticType() { return EventType::KeyTyped; }
+		EventType GetEventType() const override { return EventType::KeyTyped; }
+		const char* GetName() const override { return "KeyTyped"; }
+		std::string ToString() const override {
+			std::stringstream ss;
+			ss << "Key Typed: " << m_KeyCode;
+			return ss.str();
+		}
+
+	};
+
 	class WAVE_API KeyPressedEvent : public KeyEvent {
 
 	public:
@@ -36,7 +53,7 @@ namespace wave {
 		const char* GetName() const override { return "KeyPressed"; }
 		std::string ToString() const override {
 			std::stringstream ss;
-			ss << "Key Pressed: " << m_KeyCode << " (" << m_Repeat << " times)";
+			ss << "Key Pressed: " << char(m_KeyCode) << " (" << m_Repeat << " times)";
 			return ss.str();
 		}
 

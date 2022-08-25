@@ -50,12 +50,14 @@ namespace wave {
 			s_GLFWInitialized = true;
 		}
 
+		m_Window = glfwCreateWindow(m_Data.Width, m_Data.Height, m_Data.Title.c_str(), NULL, NULL);
+		glfwMakeContextCurrent(m_Window);
+
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		WAVE_CORE_ASSERT(status, "Failed to initialize GLAD.");
 		WAVE_CORE_INFO("Succesfully loaded GLAD!");
 
-		m_Window = glfwCreateWindow(m_Data.Width, m_Data.Height, m_Data.Title.c_str(), NULL, NULL);
-		glfwMakeContextCurrent(m_Window);
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 		
@@ -82,6 +84,14 @@ namespace wave {
 			data->eventCallbackFn(event);
 		});
 		
+		glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int character) {
+
+			WindowData* data = (WindowData*)glfwGetWindowUserPointer(window);
+
+			KeyTypedEvent event(character);
+			data->eventCallbackFn(event);
+
+		});
 
 		glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
 			
