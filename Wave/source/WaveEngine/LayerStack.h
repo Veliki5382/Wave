@@ -12,8 +12,8 @@ namespace wave {
 		LayerStack();
 		virtual ~LayerStack();
 
-		void Push(Layer* layer);
-		void Pop(Layer* layer);
+		void PushLayer(Layer* layer, unsigned int index = -1);
+		void PopLayer(Layer* layer);
 
 		std::vector<Layer*>::iterator begin() { return m_LayerStack.begin(); }
 		std::vector<Layer*>::iterator end() { return m_LayerStack.end(); }
@@ -27,7 +27,7 @@ namespace wave {
 		
 	private:
 		std::vector<Layer*> m_LayerStack;
-		std::vector<Layer*>::iterator m_LayerPointer;
+		unsigned int m_LayerIndex;
 
 	};
 

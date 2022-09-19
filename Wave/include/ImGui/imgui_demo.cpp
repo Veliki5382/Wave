@@ -1,4 +1,4 @@
-// dear imgui, v1.88
+// dear imgui, v1.89 WIP
 // (demo code)
 
 // Help:
@@ -371,7 +371,7 @@ void ImGui::ShowDemoWindow(bool* p_open)
     ImGui::SetNextWindowSize(ImVec2(550, 680), ImGuiCond_FirstUseEver);
 
     // Main body of the Demo window starts here.
-    if (!ImGui::Begin("Wave Menu Demo", p_open, window_flags))
+    if (!ImGui::Begin("Dear ImGui Demo", p_open, window_flags))
     {
         // Early out if the window is collapsed, as an optimization.
         ImGui::End();
@@ -433,7 +433,7 @@ void ImGui::ShowDemoWindow(bool* p_open)
         ImGui::EndMenuBar();
     }
 
-    ImGui::Text("Hello user! (%s) (%d)", IMGUI_VERSION, IMGUI_VERSION_NUM);
+    ImGui::Text("dear imgui says hello! (%s) (%d)", IMGUI_VERSION, IMGUI_VERSION_NUM);
     ImGui::Spacing();
 
     IMGUI_DEMO_MARKER("Help");
@@ -527,6 +527,8 @@ void ImGui::ShowDemoWindow(bool* p_open)
             ImGui::SameLine(); HelpMarker("Enable input queue trickling: some types of events submitted during the same frame (e.g. button down + up) will be spread over multiple frames, improving interactions with low framerates.");
             ImGui::Checkbox("io.ConfigInputTextCursorBlink", &io.ConfigInputTextCursorBlink);
             ImGui::SameLine(); HelpMarker("Enable blinking cursor (optional as some users consider it to be distracting).");
+            ImGui::Checkbox("io.ConfigInputTextEnterKeepActive", &io.ConfigInputTextEnterKeepActive);
+            ImGui::SameLine(); HelpMarker("Pressing Enter will keep item active and select contents (single-line only).");
             ImGui::Checkbox("io.ConfigDragClickToInputText", &io.ConfigDragClickToInputText);
             ImGui::SameLine(); HelpMarker("Enable turning DragXXX widgets into text input with a simple mouse click-release (without moving).");
             ImGui::Checkbox("io.ConfigWindowsResizeFromEdges", &io.ConfigWindowsResizeFromEdges);
@@ -1119,15 +1121,21 @@ static void ShowDemoWindowWidgets()
         static int pressed_count = 0;
         for (int i = 0; i < 8; i++)
         {
+            // UV coordinates are often (0.0f, 0.0f) and (1.0f, 1.0f) to display an entire textures.
+            // Here are trying to display only a 32x32 pixels area of the texture, hence the UV computation.
+            // Read about UV coordinates here: https://github.com/ocornut/imgui/wiki/Image-Loading-and-Displaying-Examples
             ImGui::PushID(i);
-            int frame_padding = -1 + i;                             // -1 == uses default padding (style.FramePadding)
-            ImVec2 size = ImVec2(32.0f, 32.0f);                     // Size of the image we want to make visible
-            ImVec2 uv0 = ImVec2(0.0f, 0.0f);                        // UV coordinates for lower-left
-            ImVec2 uv1 = ImVec2(32.0f / my_tex_w, 32.0f / my_tex_h);// UV coordinates for (32,32) in our texture
-            ImVec4 bg_col = ImVec4(0.0f, 0.0f, 0.0f, 1.0f);         // Black background
-            ImVec4 tint_col = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);       // No tint
-            if (ImGui::ImageButton(my_tex_id, size, uv0, uv1, frame_padding, bg_col, tint_col))
+            if (i > 0)
+                ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(i - 1.0f, i - 1.0f));
+            ImVec2 size = ImVec2(32.0f, 32.0f);                         // Size of the image we want to make visible
+            ImVec2 uv0 = ImVec2(0.0f, 0.0f);                            // UV coordinates for lower-left
+            ImVec2 uv1 = ImVec2(32.0f / my_tex_w, 32.0f / my_tex_h);    // UV coordinates for (32,32) in our texture
+            ImVec4 bg_col = ImVec4(0.0f, 0.0f, 0.0f, 1.0f);             // Black background
+            ImVec4 tint_col = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);           // No tint
+            if (ImGui::ImageButton("", my_tex_id, size, uv0, uv1, bg_col, tint_col))
                 pressed_count += 1;
+            if (i > 0)
+                ImGui::PopStyleVar();
             ImGui::PopID();
             ImGui::SameLine();
         }
@@ -3341,139 +3349,6 @@ static void ShowDemoWindowLayout()
 
         ImGui::TreePop();
     }
-
-    if (ImGui::TreeNode("Stack Layout"))
-    {
-        static bool widget_a = true, widget_b = true, widget_c = true;
-        static bool spring_a = true, spring_ab = true, spring_bc = true, spring_c = true;
-        static bool minimize_width = false, minimize_height = true;
-        static bool horizontal = true, draw_springs = true;
-        static ImVec2 item_spacing = ImGui::GetStyle().ItemSpacing;
-        static float a_c_spring_weight = 0.0f;
-        static float ab_spring_weight = 0.5f;
-        static float alignment = 0.5f;
-
-        struct funcs
-        {
-            static void VisibleSpring(float spring_weight)
-            {
-                ImVec2 start_cursor_pos = ImGui::GetCursorScreenPos();
-                ImGui::Spring(spring_weight);
-                ImVec2 end_cursor_pos = ImGui::GetCursorScreenPos();
-
-                if (!draw_springs)
-                    return;
-
-                if (spring_weight <= 0.0f)
-                    return;
-
-                if (fabsf(start_cursor_pos.x - end_cursor_pos.x) < 1.0f && fabsf(start_cursor_pos.y - end_cursor_pos.y) < 1.0f)
-                    return;
-
-                // Draw zig-zag
-                ImDrawList* draw_list = ImGui::GetWindowDrawList();
-                ImVec2 rect_min = ImGui::GetItemRectMin();
-                ImVec2 rect_max = ImGui::GetItemRectMax();
-
-                draw_list->PushClipRect(rect_min, rect_max, true);
-
-                float width = 0.0f;
-                ImVec2 direction, origin;
-
-                if (horizontal)
-                {
-                    width     = rect_max.x - rect_min.x;
-                    origin    = ImVec2(floorf(rect_min.x), floorf(rect_min.y + (rect_max.y - rect_min.y) / 2));
-                    direction = ImVec2(1.0f, 0.0f);
-                }
-                else
-                {
-                    width     = rect_max.y - rect_min.y;
-                    origin    = ImVec2(floorf(rect_min.x + (rect_max.x - rect_min.x) / 2), floorf(rect_min.y));
-                    direction = ImVec2(0.0f, 1.0f);
-                }
-
-                draw_list->AddRectFilled(rect_min, rect_max, ImColor(255, 128, 255, 40));
-
-                const float zig_zag_size = 3;
-                ImVec2 normal = ImVec2(-direction.y, direction.x);
-
-                draw_list->PathClear();
-                origin.x += 0.5f;
-                origin.y += 0.5f;
-                draw_list->PathLineTo(origin);
-                for (float x = zig_zag_size * 0.5f; x <= width; x += zig_zag_size)
-                {
-                    ImVec2 p;
-                    p.x = origin.x + direction.x * x + normal.x * zig_zag_size;
-                    p.y = origin.y + direction.y * x + normal.y * zig_zag_size;
-                    draw_list->PathLineTo(p);
-                    normal = ImVec2(-normal.x, -normal.y);
-                }
-                draw_list->PathStroke(ImColor(255, 255, 255, 190), false, 1.0f);
-
-                draw_list->PopClipRect();
-            }
-        };
-
-        ImGui::Checkbox("Widget A",  &widget_a);  ImGui::SameLine();
-        ImGui::Checkbox("Widget B",  &widget_b);  ImGui::SameLine();
-        ImGui::Checkbox("Widget C",  &widget_c);
-        ImGui::Checkbox("Spring A",  &spring_a);  ImGui::SameLine();
-        ImGui::Checkbox("Spring AB", &spring_ab); ImGui::SameLine();
-        ImGui::Checkbox("Spring BC", &spring_bc); ImGui::SameLine();
-        ImGui::Checkbox("Spring C",  &spring_c);
-        ImGui::Checkbox("Horizontal", &horizontal);            ImGui::SameLine();
-        ImGui::Checkbox("Minimize Width", &minimize_width);     ImGui::SameLine();
-        ImGui::Checkbox("Minimize Height",  &minimize_height);
-        ImGui::DragFloat("Item Spacing", horizontal ? &item_spacing.x : &item_spacing.y, 0.1f, 0.0f, 50.0f);
-        ImGui::DragFloat("A & C Spring Weight", &a_c_spring_weight, 0.002f, 0.0f, 1.0f);
-        ImGui::DragFloat("AB Spring Weight", &ab_spring_weight, 0.002f, 0.0f, 1.0f);
-        if (ImGui::IsItemHovered()) ImGui::SetTooltip("BC Spring Weight = 1 - AB Spring Weight");
-        ImGui::DragFloat("Minor Axis Alignment", &alignment, 0.002f, 0.0f, 1.0f);
-        if (ImGui::IsItemHovered()) ImGui::SetTooltip("This is vertical alignment for horizontal layouts and horizontal alignment for vertical layouts.");
-        ImGui::Text("Layout widgets:");
-        ImGui::Text("| Spring A | Widget A | Spring AB | Widget B | Spring BC | Widget C | Spring C |");
-
-        ImGui::Spacing();
-
-        ImVec2 widget_size;
-        widget_size.x = ImGui::GetContentRegionAvail().x / 4;
-        widget_size.y = horizontal ? floorf(widget_size.x / 3) : widget_size.x;
-
-        ImVec2 small_widget_size = widget_size;
-        if (horizontal)
-            small_widget_size.y = floorf(small_widget_size.y / 2);
-        else
-            small_widget_size.x = floorf(small_widget_size.x / 2);
-
-        ImVec2 layout_size = ImVec2(widget_size.x * 4, widget_size.y * 4);
-        if (minimize_width)  layout_size.x = 0.0f;
-        if (minimize_height) layout_size.y = 0.0f;
-
-        // Minor axis alignment can be set by style or directly in BeginHorizontal/BeginVertical
-        // Example:
-        //    ImGui::PushStyleVar(ImGuiStyleVar_LayoutAlign, alignment);
-
-        ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, item_spacing);
-
-        if (horizontal) { ImGui::BeginHorizontal("h1", layout_size, alignment); } else { ImGui::BeginVertical("v1", layout_size, alignment); }
-        if (spring_a)   { funcs::VisibleSpring(a_c_spring_weight); }
-        if (widget_a)   { ImGui::Button("Widget A", widget_size); }
-        if (spring_ab)  { funcs::VisibleSpring(ab_spring_weight); }
-        if (widget_b)   { ImGui::Button("Widget B", small_widget_size); }
-        if (spring_bc)  { funcs::VisibleSpring(1.0f - ab_spring_weight); }
-        if (widget_c)   { ImGui::Button("Widget C", widget_size); }
-        if (spring_c)   { funcs::VisibleSpring(a_c_spring_weight); }
-        if (horizontal) { ImGui::EndHorizontal(); } else { ImGui::EndVertical(); }
-
-        ImGui::PopStyleVar();
-
-        ImDrawList* draw_list = ImGui::GetWindowDrawList();
-        draw_list->AddRect(ImGui::GetItemRectMin(), ImGui::GetItemRectMax(), ImGui::GetColorU32(ImGuiCol_Border));
-
-        ImGui::TreePop();
-    }
 }
 
 static void ShowDemoWindowPopups()
@@ -4011,7 +3886,7 @@ static void ShowDemoWindowTables()
         }
 
         // [Method 3] We call TableNextColumn() _before_ each cell. We never call TableNextRow(),
-        // as TableNextColumn() will automatically wrap around and create new roes as needed.
+        // as TableNextColumn() will automatically wrap around and create new rows as needed.
         // This is generally more convenient when your cells all contains the same type of data.
         HelpMarker(
             "Only using TableNextColumn(), which tends to be convenient for tables where every cells contains the same type of contents.\n"
@@ -5937,8 +5812,6 @@ static void ShowDemoWindowMisc()
             ImGui::Text("Keys released:");      for (ImGuiKey key = key_first; key < ImGuiKey_COUNT; key++) { if (funcs::IsLegacyNativeDupe(key)) continue; if (ImGui::IsKeyReleased(key)) { ImGui::SameLine(); ImGui::Text("\"%s\" %d", ImGui::GetKeyName(key), key); } }
             ImGui::Text("Keys mods: %s%s%s%s", io.KeyCtrl ? "CTRL " : "", io.KeyShift ? "SHIFT " : "", io.KeyAlt ? "ALT " : "", io.KeySuper ? "SUPER " : "");
             ImGui::Text("Chars queue:");        for (int i = 0; i < io.InputQueueCharacters.Size; i++) { ImWchar c = io.InputQueueCharacters[i]; ImGui::SameLine();  ImGui::Text("\'%c\' (0x%04X)", (c > ' ' && c <= 255) ? (char)c : '?', c); } // FIXME: We should convert 'c' to UTF-8 here but the functions are not public.
-            ImGui::Text("NavInputs down:");     for (int i = 0; i < IM_ARRAYSIZE(io.NavInputs); i++) if (io.NavInputs[i] > 0.0f)              { ImGui::SameLine(); ImGui::Text("[%d] %.2f (%.02f secs)", i, io.NavInputs[i], io.NavInputsDownDuration[i]); }
-            ImGui::Text("NavInputs pressed:");  for (int i = 0; i < IM_ARRAYSIZE(io.NavInputs); i++) if (io.NavInputsDownDuration[i] == 0.0f) { ImGui::SameLine(); ImGui::Text("[%d]", i); }
 
             // Draw an arbitrary US keyboard layout to visualize translated keys
             {
@@ -6022,7 +5895,7 @@ static void ShowDemoWindowMisc()
                 ImGui::SetNextFrameWantCaptureMouse(capture_override_mouse == 1);
             if (ImGui::IsItemHovered() && capture_override_keyboard != -1)
                 ImGui::SetNextFrameWantCaptureKeyboard(capture_override_keyboard == 1);
-            
+
             ImGui::TreePop();
         }
 
@@ -8172,7 +8045,8 @@ void ShowExampleAppDocuments(bool* p_open)
             if (ImGui::MenuItem("Close All Documents", NULL, false, open_count > 0))
                 for (int doc_n = 0; doc_n < app.Documents.Size; doc_n++)
                     app.Documents[doc_n].DoQueueClose();
-            if (ImGui::MenuItem("Exit", "Alt+F4")) {}
+            if (ImGui::MenuItem("Exit", "Ctrl+F4") && p_open)
+                *p_open = false;
             ImGui::EndMenu();
         }
         ImGui::EndMenuBar();

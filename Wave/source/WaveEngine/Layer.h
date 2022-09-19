@@ -27,6 +27,7 @@ namespace wave {
 		virtual void OnAttach() {}
 		virtual void OnDettach() {}
 		virtual void OnUpdate() {}
+		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& e) {}
 
 		std::string GetName() const { return m_Name; }

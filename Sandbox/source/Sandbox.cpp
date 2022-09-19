@@ -1,5 +1,5 @@
 #include <Wave.h>
-
+#include "ImGui/imgui.h"
 
 class MainLayer : public wave::Layer {
 
@@ -11,6 +11,17 @@ public:
 		
 		//WAVE_INFO("MainLayer::Event");
 	}
+
+	void OnImGuiRender() override {
+
+		ImGui::Begin("Gas");
+		ImGui::Text("mame mi");
+		bool ok = true;
+		ImGui::Checkbox("kutija", &ok);
+		ImGui::End();
+
+	}
+
 	void OnEvent(wave::Event& e) override {
 		
 		if (e.GetEventType() == wave::EventType::KeyPressed) {
@@ -32,7 +43,6 @@ public:
 	
 	Sandbox() {
 		PushLayer(new MainLayer);
-		PushLayer(new wave::ImGuiLayer);
 
 	}
 

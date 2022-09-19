@@ -6,8 +6,7 @@ project "ImGui"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-	files
-	{
+	files {
 		"imconfig.h",
 		"imgui.h",
 		"imgui.cpp",

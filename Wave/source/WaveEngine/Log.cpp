@@ -1,5 +1,5 @@
 #include "wavepch.h"
-
+#include "Log.h"
 
 namespace wave {
 

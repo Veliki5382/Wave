@@ -80,7 +80,7 @@
       <PrecompiledHeaderFile>wavepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WAVE_PLATFORM_WINDOWS;WAVE_EXPORT_DLL;WAVE_INCLUDE_OPENGL;WAVE_DEBUG;WAVE_ASSERT_ENABLED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;source;include;include\GLFW\include;include\GlAD\include;include\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;source;include;include\GLFW\include;include\GlAD\include;include\ImGui;include\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -102,7 +102,7 @@
       <PrecompiledHeaderFile>wavepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WAVE_PLATFORM_WINDOWS;WAVE_EXPORT_DLL;WAVE_INCLUDE_OPENGL;WAVE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;source;include;include\GLFW\include;include\GlAD\include;include\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;source;include;include\GLFW\include;include\GlAD\include;include\ImGui;include\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -128,7 +128,7 @@
       <PrecompiledHeaderFile>wavepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WAVE_PLATFORM_WINDOWS;WAVE_EXPORT_DLL;WAVE_INCLUDE_OPENGL;WAVE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;source;include;include\GLFW\include;include\GlAD\include;include\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;source;include;include\GLFW\include;include\GlAD\include;include\ImGui;include\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -149,8 +149,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="source\Platform\OpenGL\imgui_impl_glfw.h" />
-    <ClInclude Include="source\Platform\OpenGL\imgui_impl_opengl3.h" />
     <ClInclude Include="source\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="source\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="source\Wave.h" />
@@ -172,11 +170,10 @@
     <ClInclude Include="source\wavepch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\Platform\OpenGL\imgui_impl_glfw.cpp" />
-    <ClCompile Include="source\Platform\OpenGL\imgui_impl_opengl3.cpp" />
     <ClCompile Include="source\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="source\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="source\WaveEngine\Application.cpp" />
+    <ClCompile Include="source\WaveEngine\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="source\WaveEngine\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="source\WaveEngine\Layer.cpp" />
     <ClCompile Include="source\WaveEngine\LayerStack.cpp" />

@@ -15,12 +15,16 @@ namespace wave {
 	Application::Application() {
 		WAVE_CORE_ASSERT(!s_Instance, "There is already application instance constructed!");
 		s_Instance = this;
-		m_Window = Window::Create(WindowProps("Wave", 1280, 720));
 		m_Running = true;
+		
+		m_Window = std::unique_ptr<Window>(Window::Create(WindowProps("Wave", 1280, 720)));
 		m_Window->SetEventCallbackFunction(WAVE_BIND_FN(Application::onEvent));
+
+		m_ImGuiLayer = new ImGuiLayer;
+		m_LayerStack.PushLayer(m_ImGuiLayer);
 	}
 	Application::~Application() {
-		delete m_Window;
+		
 	}
 
 	void Application::onEvent(Event& e) {
@@ -39,7 +43,7 @@ namespace wave {
 	}
 
 	void Application::PushLayer(Layer* layer) {
-		m_LayerStack.Push(layer);
+		m_LayerStack.PushLayer(layer);
 	}
 
 	void Application::Run() {
@@ -52,14 +56,16 @@ namespace wave {
 				(*it)->OnUpdate();
 			}
 
-			//auto pos = Input::GetMousePosition();
-			//WAVE_CORE_TRACE("{0}, {1}", pos.first, pos.second);
+			m_ImGuiLayer->Begin();
+			for (auto layer : m_LayerStack) {
+				layer->OnImGuiRender();
+			}
+			m_ImGuiLayer->End();
 
 			m_Window->OnUpdate();
 			
 			glClearColor(1, 1, 0, 1);
 			glClear(unsigned int(GL_COLOR_BUFFER_BIT));
-			
 		}
 	}
 

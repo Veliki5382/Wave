@@ -1,4 +1,4 @@
-// dear imgui, v1.88
+// dear imgui, v1.89 WIP
 // (drawing and font code)
 
 /*
@@ -463,12 +463,7 @@ void ImDrawList::AddDrawCmd()
     draw_cmd.VtxOffset = _CmdHeader.VtxOffset;
     draw_cmd.IdxOffset = IdxBuffer.Size;
 
-    // NOTE(Yan): Not sure why this happens but sometimes x > z which causes a crash in vkCmdSetScissor later on
-    // IM_ASSERT(draw_cmd.ClipRect.x <= draw_cmd.ClipRect.z && draw_cmd.ClipRect.y <= draw_cmd.ClipRect.w);
-    if (draw_cmd.ClipRect.x > draw_cmd.ClipRect.z)
-        draw_cmd.ClipRect.z = draw_cmd.ClipRect.x + 1;
-    if (draw_cmd.ClipRect.y > draw_cmd.ClipRect.y)
-        draw_cmd.ClipRect.w = draw_cmd.ClipRect.w + 1;
+    IM_ASSERT(draw_cmd.ClipRect.x <= draw_cmd.ClipRect.z && draw_cmd.ClipRect.y <= draw_cmd.ClipRect.w);
     CmdBuffer.push_back(draw_cmd);
 }
 

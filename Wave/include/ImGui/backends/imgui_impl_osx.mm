@@ -376,6 +376,18 @@ static ImGuiKey ImGui_ImplOSX_KeyCodeToImGuiKey(int key_code)
     }
 }
 
+#ifdef IMGUI_IMPL_METAL_CPP_EXTENSIONS
+
+IMGUI_IMPL_API bool ImGui_ImplOSX_Init(void* _Nonnull view) {
+    return ImGui_ImplOSX_Init((__bridge NSView*)(view));
+}
+
+IMGUI_IMPL_API void ImGui_ImplOSX_NewFrame(void* _Nullable view) {
+    return ImGui_ImplOSX_NewFrame((__bridge NSView*)(view));
+}
+
+#endif
+
 
 bool ImGui_ImplOSX_Init(NSView* view)
 {
@@ -516,7 +528,7 @@ static void ImGui_ImplOSX_UpdateGamepads()
 {
     ImGuiIO& io = ImGui::GetIO();
     memset(io.NavInputs, 0, sizeof(io.NavInputs));
-    if ((io.ConfigFlags & ImGuiConfigFlags_NavEnableGamepad) == 0)
+    if ((io.ConfigFlags & ImGuiConfigFlags_NavEnableGamepad) == 0) // FIXME: Technically feeding gamepad shouldn't depend on this now that they are regular inputs.
         return;
 
 #if APPLE_HAS_CONTROLLER
@@ -541,10 +553,10 @@ static void ImGui_ImplOSX_UpdateGamepads()
 #if APPLE_HAS_BUTTON_OPTIONS
     MAP_BUTTON(ImGuiKey_GamepadBack,            buttonOptions);
 #endif
-    MAP_BUTTON(ImGuiKey_GamepadFaceDown,        buttonA);              // Xbox A, PS Cross
-    MAP_BUTTON(ImGuiKey_GamepadFaceRight,       buttonB);              // Xbox B, PS Circle
     MAP_BUTTON(ImGuiKey_GamepadFaceLeft,        buttonX);              // Xbox X, PS Square
+    MAP_BUTTON(ImGuiKey_GamepadFaceRight,       buttonB);              // Xbox B, PS Circle
     MAP_BUTTON(ImGuiKey_GamepadFaceUp,          buttonY);              // Xbox Y, PS Triangle
+    MAP_BUTTON(ImGuiKey_GamepadFaceDown,        buttonA);              // Xbox A, PS Cross
     MAP_BUTTON(ImGuiKey_GamepadDpadLeft,        dpad.left);
     MAP_BUTTON(ImGuiKey_GamepadDpadRight,       dpad.right);
     MAP_BUTTON(ImGuiKey_GamepadDpadUp,          dpad.up);

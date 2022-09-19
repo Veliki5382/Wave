@@ -5,7 +5,7 @@ namespace wave {
 
 	
 	LayerStack::LayerStack() {
-		m_LayerPointer = m_LayerStack.begin();
+		m_LayerIndex = 0;
 	}
 
 	LayerStack::~LayerStack() {
@@ -15,19 +15,26 @@ namespace wave {
 		m_LayerStack.clear();
 	}
 
-	void LayerStack::Push(Layer* layer) {
-		m_LayerStack.push_back(layer);
+	void LayerStack::PushLayer(Layer* layer, unsigned int index) {
+		if (index == -1) {
+			m_LayerStack.push_back(layer);
+		}
+		else {
+			WAVE_ASSERT(index >= 0, "Index isn't valid.");
+			m_LayerStack.emplace(m_LayerStack.begin() + index, layer);
+		}
+		WAVE_ASSERT(layer != nullptr, "Instance of {0} wasn't properly made before calling attaching to layerstack.", layer->GetName());
 		layer->OnAttach();
-		//m_LayerPointer++;
+		m_LayerIndex++;
 	}
 
-	void LayerStack::Pop(Layer* layer) {
+	void LayerStack::PopLayer(Layer* layer) {
 		std::vector<Layer*>::iterator ptr;
 		for (ptr = m_LayerStack.begin(); ptr != m_LayerStack.end(); ++ptr) {
 			if (*ptr == layer) {
 				(*ptr)->OnDettach();
 				m_LayerStack.erase(ptr);
-				m_LayerPointer--;
+				m_LayerIndex--;
 				break;
 			}
 		}

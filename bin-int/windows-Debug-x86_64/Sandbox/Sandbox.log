@@ -5,19 +5,12 @@ C:\Dev\Wave\Wave\source\WaveEngine\Log.h(24,42): warning C4251: 'wave::log::s_Co
 C:\Dev\Wave\Wave\include\spdlog\details\registry.h(34): message : see declaration of 'std::shared_ptr<spdlog::logger>'
 C:\Dev\Wave\Wave\source\WaveEngine\Log.h(42,1): warning C4005: 'WAVE_DEBUG': macro redefinition
 C:\Dev\Wave\Wave\source\WaveEngine\Log.h(42,1): message : 'WAVE_DEBUG' previously declared on the command line
-C:\Dev\Wave\Wave\source\WaveEngine\Layer.h(35,15): warning C4251: 'wave::Layer::m_Name': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'wave::Layer'
+C:\Dev\Wave\Wave\source\WaveEngine\Layer.h(36,15): warning C4251: 'wave::Layer::m_Name': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'wave::Layer'
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xstring(4919): message : see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
 C:\Dev\Wave\Wave\source\WaveEngine\LayerStack.h(29,23): warning C4251: 'wave::LayerStack::m_LayerStack': class 'std::vector<wave::Layer *,std::allocator<wave::Layer *>>' needs to have dll-interface to be used by clients of class 'wave::LayerStack'
 C:\Dev\Wave\Wave\source\WaveEngine\LayerStack.h(18): message : see declaration of 'std::vector<wave::Layer *,std::allocator<wave::Layer *>>'
-C:\Dev\Wave\Wave\source\WaveEngine\LayerStack.h(30,33): warning C4251: 'wave::LayerStack::m_LayerPointer': class 'std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>' needs to have dll-interface to be used by clients of class 'wave::LayerStack'
-          with
-          [
-              _Ty=wave::Layer *
-          ]
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\vector(654): message : see declaration of 'std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>'
-          with
-          [
-              _Ty=wave::Layer *
-          ]
-C:\Dev\Wave\Sandbox\source\Sandbox.cpp(49,1): warning C4506: no definition for inline function 'void wave::log::Init(void)'
+C:\Dev\Wave\Wave\source\WaveEngine\Application.h(30,27): warning C4251: 'wave::Application::m_Window': class 'std::unique_ptr<wave::Window,std::default_delete<wave::Window>>' needs to have dll-interface to be used by clients of class 'wave::Application'
+C:\Dev\Wave\Wave\source\WaveEngine\Application.h(30): message : see declaration of 'std::unique_ptr<wave::Window,std::default_delete<wave::Window>>'
+C:\Dev\Wave\Sandbox\source\Sandbox.cpp(59,1): warning C4506: no definition for inline function 'void wave::log::Init(void)'
+     Creating library ..\bin\windows-Debug-x86_64\Sandbox\Sandbox.lib and object ..\bin\windows-Debug-x86_64\Sandbox\Sandbox.exp
   Sandbox.vcxproj -> C:\Dev\Wave\bin\windows-Debug-x86_64\Sandbox\Sandbox.exe

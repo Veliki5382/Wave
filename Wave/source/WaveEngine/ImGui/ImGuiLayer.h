@@ -18,21 +18,13 @@ namespace wave {
 
 		void OnAttach() override;
 		void OnDettach() override;
-		void OnUpdate() override;
-		void OnEvent(Event& e) override;
+		void OnImGuiRender() override;
+
+		void Begin();
+		void End();
 
 	private:
 		double m_Time = 0.0f;
-
-	private:
-		bool OnMouseButtonPressedEvent(MouseButtonPressedEvent& event);
-		bool OnMouseButtonReleasedEvent(MouseButtonReleasedEvent& event);
-		bool OnMouseScrolledEvent(MouseScrolledEvent& event);
-		bool OnMouseMovedEvent(MouseMovedEvent& event);
-		bool OnKeyTypedEvent(KeyTypedEvent& event);
-		bool OnKeyPressedEvent(KeyPressedEvent& event);
-		bool OnKeyReleasedEvent(KeyReleasedEvent& event);
-		bool OnWindowResizedEvent(WindowResizedEvent& event);
 
 	};
 

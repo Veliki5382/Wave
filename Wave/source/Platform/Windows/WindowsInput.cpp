@@ -11,7 +11,7 @@ namespace wave {
 
 	bool WindowsInput::GetKeyStateImpl(int keycode) {
 
-		GLFWwindow* window = (GLFWwindow*)(Application::Get()->GetWindow()->GetNativeWindow());
+		GLFWwindow* window = (GLFWwindow*)(Application::Get().GetWindow().GetNativeWindow());
 
 		int status = glfwGetKey(window, keycode);
         return (status == GLFW_PRESS || status == GLFW_REPEAT);
@@ -20,7 +20,7 @@ namespace wave {
     
     bool WindowsInput::GetMouseButtonStateImpl(int button) {
         
-        GLFWwindow* window = (GLFWwindow*)(Application::Get()->GetWindow()->GetNativeWindow());
+        GLFWwindow* window = (GLFWwindow*)(Application::Get().GetWindow().GetNativeWindow());
 
         int status = glfwGetMouseButton(window, button);
         return status == GLFW_PRESS;
@@ -29,7 +29,7 @@ namespace wave {
 
     std::pair<double, double> WindowsInput::GetMousePositionImpl() {
         
-        GLFWwindow* window = (GLFWwindow*)(Application::Get()->GetWindow()->GetNativeWindow());
+        GLFWwindow* window = (GLFWwindow*)(Application::Get().GetWindow().GetNativeWindow());
 
         double xpos, ypos;
         glfwGetCursorPos(window, &xpos, &ypos);
@@ -53,7 +53,7 @@ namespace wave {
     
     double WindowsInput::GetScrollXOffsetImpl() {
         
-        GLFWwindow* window = (GLFWwindow*)(Application::Get()->GetWindow()->GetNativeWindow());
+        GLFWwindow* window = (GLFWwindow*)(Application::Get().GetWindow().GetNativeWindow());
 
         return 0.0f;
     }
@@ -65,7 +65,7 @@ namespace wave {
     
     int WindowsInput::GetWindowWidthImpl() {
 
-        GLFWwindow* window = (GLFWwindow*)(Application::Get()->GetWindow()->GetNativeWindow());
+        GLFWwindow* window = (GLFWwindow*)(Application::Get().GetWindow().GetNativeWindow());
 
         int width, height;
         glfwGetWindowSize(window, &width, &height);
@@ -75,7 +75,7 @@ namespace wave {
     
     int WindowsInput::GetWindowHeightImpl() {
 
-        GLFWwindow* window = (GLFWwindow*)(Application::Get()->GetWindow()->GetNativeWindow());
+        GLFWwindow* window = (GLFWwindow*)(Application::Get().GetWindow().GetNativeWindow());
 
         int width, height;
         glfwGetWindowSize(window, &width, &height);

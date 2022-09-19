@@ -17,10 +17,15 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Wave/include/GLFW/include/"
 IncludeDir["GLAD"] = "Wave/include/GlAD/include/"
 IncludeDir["ImGui"] = "Wave/include/ImGui/"
+IncludeDir["glm"] = "Wave/include/glm/"
 
-include "Wave/include/GLFW/premake5.lua"
-include "Wave/include/GLAD/premake5.lua"
-include "Wave/include/ImGui/premake5.lua"
+
+group "Dependencies"
+	include "Wave/include/GLFW/premake5.lua"
+	include "Wave/include/GLAD/premake5.lua"
+	include "Wave/include/ImGui/premake5.lua"
+group ""
+
 
 --- PROJECT WAVE ---------------------------------------------------
 
@@ -54,7 +59,8 @@ project "Wave"
 		"%{prj.name}/include/",
 		"%{IncludeDir.GLFW}/",
 		"%{IncludeDir.GLAD}/",
-		"%{IncludeDir.ImGui}/"
+		"%{IncludeDir.ImGui}/",
+		"%{IncludeDir.glm}/"
 	}
 
 	links {
@@ -139,7 +145,9 @@ project "Sandbox"
 		"%{prj.name}/",
 		"%{prj.name}/source/",
 		"Wave/source/",
-		"Wave/include/"
+		"Wave/include/",
+		"Wave/include/GLFW/include/",
+		"%{IncludeDir.glm}/"
 	}
 
 	links {

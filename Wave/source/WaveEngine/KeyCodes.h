@@ -130,7 +130,7 @@
 
 #elif defined(WAVE_PLATFROM_LINUX)
 
-#else 
+#else
 	#error Operating System not specified!
 #endif
 

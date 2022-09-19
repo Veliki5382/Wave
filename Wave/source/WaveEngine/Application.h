@@ -6,6 +6,7 @@
 #include "LayerStack.h"
 #include "Platform/Windows/WindowsWindow.h"
 #include "Events/ApplicationEvent.h"
+#include "ImGui/ImGuiLayer.h"
 
 namespace wave {
 
@@ -20,13 +21,14 @@ namespace wave {
 
 		void PushLayer(Layer* layer);
 
-		inline Window* GetWindow() { return m_Window; }
-		inline static Application* Get() { return s_Instance; }
+		inline Window& GetWindow() { return *m_Window; }
+		inline static Application& Get() { return *s_Instance; }
 
 	private:
 		bool windowClosed(WindowClosedEvent& e);
 		
-		Window* m_Window;
+		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running;
 		LayerStack m_LayerStack;
 	
