@@ -16,6 +16,8 @@ namespace wave {
 	}
 
 	void LayerStack::PushLayer(Layer* layer, unsigned int index) {
+		
+		WAVE_ASSERT(layer != nullptr, "Instance of {0} wasn't properly made before calling attaching to layerstack.");
 		if (index == -1) {
 			m_LayerStack.push_back(layer);
 		}
@@ -23,7 +25,6 @@ namespace wave {
 			WAVE_ASSERT(index >= 0, "Index isn't valid.");
 			m_LayerStack.emplace(m_LayerStack.begin() + index, layer);
 		}
-		WAVE_ASSERT(layer != nullptr, "Instance of {0} wasn't properly made before calling attaching to layerstack.", layer->GetName());
 		layer->OnAttach();
 		m_LayerIndex++;
 	}

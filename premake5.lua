@@ -31,8 +31,12 @@ group ""
 
 project "Wave"
 	location "Wave"
-	kind "SharedLib"
+	kind "StaticLib"
+	staticruntime "on"
 	language "C++"
+	cppdialect "C++17"
+	systemversion "latest"
+
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -74,32 +78,22 @@ project "Wave"
 	--- FILTERS --------------------------------------
 
 	filter "system:windows"
-		cppdialect "C++17"
-		staticruntime "Off"
-		systemversion "latest"
-
+		
 		defines {
 			"WAVE_PLATFORM_WINDOWS",
+			"WAVE_LINK_STATIC",
 			"WAVE_EXPORT_DLL",
 			"WAVE_INCLUDE_OPENGL"
 		}
 
-		postbuildcommands {
-			("{COPYFILE} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox/")
-		}
-
 	filter "system:mac"
-		staticruntime "Off"
-		systemversion "latest"
-
+		
 		defines {
 			"WAVE_PLATFORM_MAC"
 		}
 
 	filter "system:linux"
-		staticruntime "Off"
-		systemversion "latest"
-
+		
 		defines {
 			"WAVE_PLATFORM_LINUX"
 		}
@@ -108,30 +102,32 @@ project "Wave"
 
 	filter "configurations:Debug"
 		defines {
-			"WAVE_DEBUG",
+			"WAVE_MODE_DEBUG",
 			"WAVE_ASSERT_ENABLED"
 		}
-		symbols "On"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines {
-			"WAVE_RELEASE"
+			"WAVE_MODE_RELEASE"
 		}
-		optimize "On"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines {
-			"WAVE_DIST"
+			"WAVE_MODE_DIST"
 		}
-		optimize "On"
+		optimize "on"
 
 --- PROJECT SANDBOX ------------------------------------------------
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
-
+	staticruntime "on"
 	language "C++"
+	cppdialect "C++17"
+	systemversion "latest"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -158,26 +154,19 @@ project "Sandbox"
 	--- FILTERS --------------------------------------
 
 	filter "system:windows"
-		cppdialect "C++17"
-		staticruntime "Off"
-		systemversion "10.0"
 
 		defines {
 			"WAVE_PLATFORM_WINDOWS"
 		}
 
 	filter "system:mac"
-		staticruntime "Off"
-		systemversion "latest"
-
+		
 		defines {
 			"WAVE_PLATFORM_MAC"
 		}
 
 	filter "system:linux"
-		staticruntime "Off"
-		systemversion "latest"
-
+		
 		defines {
 			"WAVE_PLATFORM_LINUX"
 		}
@@ -185,20 +174,20 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines {
-			"WAVE_DEBUG"
+			"WAVE_MODE_DEBUG"
 		}
-		symbols "On"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines {
-			"WAVE_RELEASE"
+			"WAVE_MODE_RELEASE"
 		}
-		optimize "On"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines {
-			"WAVE_DIST"
+			"WAVE_MODE_DIST"
 		}
-		optimize "On"
+		optimize "on"
 
 --------------------------------------------------------------------

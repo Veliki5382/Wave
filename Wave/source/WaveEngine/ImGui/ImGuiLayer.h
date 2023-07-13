@@ -1,6 +1,7 @@
 #ifndef IMGUI_LAYER_H
 #define IMGUI_LAYER_H
 
+#include "WaveEngine/Core.h"
 #include "WaveEngine/Layer.h"
 #include "WaveEngine/Events/MouseEvent.h"
 #include "WaveEngine/Events/KeyEvent.h"

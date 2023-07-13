@@ -1,6 +1,7 @@
 #ifndef WINDOWSWINDOW_H
 #define WINDOWSWINDOW_H
 
+#include "WaveEngine/Core.h"
 #include "WaveEngine/Input.h"
 
 namespace wave {

@@ -14,7 +14,7 @@ namespace wave {
 		log();
 		~log();
 
-		inline static void Init();
+		static void Init();
 
 		inline static std::shared_ptr<spdlog::logger> GetClientLog() { return s_ClientLog; }
 		inline static std::shared_ptr<spdlog::logger> GetCoreLog() { return s_CoreLog; }

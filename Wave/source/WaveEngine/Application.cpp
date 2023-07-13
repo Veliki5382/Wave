@@ -6,7 +6,6 @@
 #include "Platform/Windows/WindowsWindow.h"
 #include "WaveEngine/Input.h"
 
-#include <GLAD/glad.h>
 
 namespace wave {
 

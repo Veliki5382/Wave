@@ -2,10 +2,14 @@
 #define CORE_H
 
 #ifdef WAVE_PLATFORM_WINDOWS
-	#ifdef WAVE_EXPORT_DLL
-		#define WAVE_API _declspec(dllexport)
+	#ifdef WAVE_LINK_DYNAMIC
+		#ifdef WAVE_EXPORT_DLL
+			#define WAVE_API _declspec(dllexport)
+		#else
+			#define WAVE_API _declspec(dllimport)
+		#endif
 	#else
-		#define WAVE_API _declspec(dllimport)
+		#define WAVE_API 
 	#endif
 #else
 	#error Sorry, Wave Engine is currently in develop for Mac and Linux platforms!

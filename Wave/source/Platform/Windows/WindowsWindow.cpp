@@ -27,11 +27,6 @@ namespace wave {
 		Shutdown();
 	}
 
-	void glfwErrorCallback(int error, const char* description) {
-
-		WAVE_CORE_ERROR("GLFW Error {0}: {1}", error, description);
-	}
-
 	void WindowsWindow::OnStartup(const WindowProps& props) {
 
 		m_Data.Title = props.Title;
@@ -57,12 +52,14 @@ namespace wave {
 		WAVE_CORE_ASSERT(status, "Failed to initialize GLAD.");
 		WAVE_CORE_INFO("Succesfully loaded GLAD!");
 
-
 		glfwSetWindowUserPointer(m_Window, &m_Data);
-		SetVSync(true);
+		SetVSync(m_Data.VSync);
 		
+		glfwSetErrorCallback( [](int error, const char* description) {
 
-		glfwSetErrorCallback(glfwErrorCallback);
+			WAVE_CORE_ERROR("GLFW Error {0}: {1}", error, description);
+		});
+
 
 		// ------ GLFW Event Callback functions ---------------------------------------
 
@@ -134,7 +131,7 @@ namespace wave {
 					break;
 				}
 			}
-					
+			
 		});
 
 		glfwSetScrollCallback(m_Window, [](GLFWwindow* window, double xOffset, double yOffset) {
@@ -165,22 +162,15 @@ namespace wave {
 		glfwSwapBuffers(m_Window);
 	}
 
-	bool WindowsWindow::VSyncStatus() const {
+	bool WindowsWindow::GetVSync() const {
 
 		return m_Data.VSync;
 	}
 
 	inline void WindowsWindow::SetVSync(const bool status) {
 
-		if (status == true) {
-			glfwSwapInterval(1);
-			m_Data.VSync = true;
-		}
-		else {
-			glfwSwapInterval(0);
-			m_Data.VSync = false;
-		}
-
+		glfwSwapInterval(status);
+		m_Data.VSync = status;
 	}
 
 }

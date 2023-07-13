@@ -1,6 +1,7 @@
 #ifndef WINDOWS_WINDOW_H
 #define WINDOWS_WINDOW_H
 
+#include "WaveEngine/Core.h"
 #include "WaveEngine/Window.h"
 
 #include "GLFW/include/GLFW/glfw3.h"
@@ -22,7 +23,7 @@ namespace wave {
 
 		inline void SetEventCallbackFunction(const EventCallbackFunction& callEvent) override { m_Data.eventCallbackFn = callEvent; }
 		
-		bool VSyncStatus() const override;
+		bool GetVSync() const override;
 		void SetVSync(const bool status) override;
 		
 		void* GetNativeWindow() const override { return m_Window; }
@@ -35,16 +36,13 @@ namespace wave {
 		GLFWwindow* m_Window;
 		 
 		struct WindowData {
-			std::string Title;
-			unsigned int Width, Height;
+			std::string Title = "Windows Window";
+			unsigned int Width = 0, Height = 0;
 			
 			unsigned int m_RepeatNumber = 0;
-			bool VSync;
+			bool VSync = true;
 			EventCallbackFunction eventCallbackFn;
-		};
-		
-		WindowData m_Data;
-		
+		} m_Data;
 
 	};
 

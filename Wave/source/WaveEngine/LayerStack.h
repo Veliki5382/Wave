@@ -1,6 +1,7 @@
 #ifndef LAYERSTACK_H
 #define LAYERSTACK_H
 
+#include "Core.h"
 #include "Layer.h"
 
 namespace wave {

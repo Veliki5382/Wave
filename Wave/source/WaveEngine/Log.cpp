@@ -6,7 +6,6 @@ namespace wave {
 	std::shared_ptr<spdlog::logger> log::s_ClientLog;
 	std::shared_ptr<spdlog::logger> log::s_CoreLog;
 
-
 	void log::Init() {
 		
 		spdlog::set_pattern("%^[%n][%l][%H:%M:%S:%e %p]%$ %v");

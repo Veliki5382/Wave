@@ -2,6 +2,8 @@
 #define EVENT_H
 
 #include "wavepch.h"
+
+#include "WaveEngine/Core.h"
 #include "spdlog/spdlog.h"
 #include "spdlog/fmt/ostr.h" // for OStream overriding
 

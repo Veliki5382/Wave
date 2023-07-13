@@ -1,7 +1,7 @@
 #ifndef KEY_EVENT_H
 #define KEY_EVENT_H
 
-//#include "source/wavepch.h"
+#include "WaveEngine/Core.h"
 #include "Event.h"
 
 namespace wave {

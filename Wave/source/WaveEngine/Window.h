@@ -3,8 +3,8 @@
 
 #include "wavepch.h"
 
-#include "Events/Event.h"
 #include "Core.h"
+#include "Events/Event.h"
 
 namespace wave {
 
@@ -12,9 +12,7 @@ namespace wave {
 		std::string Title;
 		unsigned int Height, Width;
 
-		WindowProps(std::string title = "Wave Engine",
-					unsigned int width = 1280,
-					unsigned int height = 720)
+		WindowProps(std::string title = "Wave Engine", unsigned int width = 1280, unsigned int height = 720)
 			: Title(title), Height(height), Width(width) {}
 	};
 
@@ -29,7 +27,7 @@ namespace wave {
 		inline virtual unsigned int GetHeight() const = 0;
 		
 		virtual inline void SetEventCallbackFunction(const EventCallbackFunction& callEvent) = 0;
-		virtual bool VSyncStatus() const = 0;
+		virtual bool GetVSync() const = 0;
 		virtual inline void SetVSync(bool status) = 0;
 
 		virtual void OnUpdate() = 0;

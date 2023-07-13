@@ -1,7 +1,7 @@
 #ifndef MOUSE_EVENT_H
 #define MOUSE_EVENT_H
 
-#include "wavepch.h"
+#include "WaveEngine/Core.h"
 #include "Event.h"
 
 namespace wave {

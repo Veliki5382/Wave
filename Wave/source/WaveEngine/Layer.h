@@ -1,6 +1,7 @@
 #ifndef LAYER_H
 #define LAYER_H
 
+#include "Core.h"
 #include "Events/Event.h"
 
 namespace wave {

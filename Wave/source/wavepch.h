@@ -1,6 +1,7 @@
 #ifndef WAVEPCH_H
 #define WAVEPCH_H
 
+#define _CRT_SECURE_NO_WARNINGS
 
 #include <iostream>
 #include <memory>
@@ -14,11 +15,10 @@
 #include <set>
 #include <map>
 
-
-#include "WaveEngine/Log.h"
-
 #ifdef WAVE_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif
+
+#include "WaveEngine/Log.h"
 
 #endif

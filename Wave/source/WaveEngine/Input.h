@@ -1,11 +1,11 @@
 #ifndef INPUT_H
 #define INPUT_H
 
-#include "WaveEngine/Core.h"
+#include "Core.h"
 
-namespace wave {
+namespace WAVE_API wave {
 
-	class WAVE_API Input {
+	class Input {
 
 	public:
 		inline static bool GetKeyState(int keycode) { return s_Instance->GetKeyStateImpl(keycode); }
