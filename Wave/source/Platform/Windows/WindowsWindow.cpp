@@ -5,8 +5,7 @@
 #include "WaveEngine/Events/KeyEvent.h"
 #include "WaveEngine/Events/MouseEvent.h"
 #include "WaveEngine/Events/ApplicationEvent.h"
-
-#include <GLAD/glad.h>
+#include "Platform/OpenGL/OpenGLContext.h"
 
 namespace wave {
 
@@ -19,12 +18,12 @@ namespace wave {
 
 	WindowsWindow::WindowsWindow(const WindowProps& props) {
 
-		OnStartup(props);
+		WindowsWindow::OnStartup(props);
 	}
 
 	WindowsWindow::~WindowsWindow() {
 
-		Shutdown();
+		WindowsWindow::Shutdown();
 	}
 
 	void WindowsWindow::OnStartup(const WindowProps& props) {
@@ -48,20 +47,19 @@ namespace wave {
 		m_Window = glfwCreateWindow(m_Data.Width, m_Data.Height, m_Data.Title.c_str(), NULL, NULL);
 		glfwMakeContextCurrent(m_Window);
 
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		WAVE_CORE_ASSERT(status, "Failed to initialize GLAD.");
-		WAVE_CORE_INFO("Succesfully loaded GLAD!");
+		m_Context = new OpenGLContext(m_Window);
+		m_Context->Init();
 
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(m_Data.VSync);
+		
+		
+		// ------ GLFW Event Callback functions ---------------------------------------
 		
 		glfwSetErrorCallback( [](int error, const char* description) {
 
 			WAVE_CORE_ERROR("GLFW Error {0}: {1}", error, description);
 		});
-
-
-		// ------ GLFW Event Callback functions ---------------------------------------
 
 		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height) {
 			
@@ -158,8 +156,9 @@ namespace wave {
 	}
 
 	void WindowsWindow::OnUpdate() {
+		
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffers();
 	}
 
 	bool WindowsWindow::GetVSync() const {
@@ -169,8 +168,8 @@ namespace wave {
 
 	inline void WindowsWindow::SetVSync(const bool status) {
 
-		glfwSwapInterval(status);
 		m_Data.VSync = status;
+		glfwSwapInterval(status);
 	}
 
 }

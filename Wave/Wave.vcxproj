@@ -140,6 +140,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="source\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="source\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="source\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="source\Wave.h" />
@@ -157,10 +158,12 @@
     <ClInclude Include="source\WaveEngine\LayerStack.h" />
     <ClInclude Include="source\WaveEngine\Log.h" />
     <ClInclude Include="source\WaveEngine\MouseButtonCodes.h" />
+    <ClInclude Include="source\WaveEngine\Renderer\Context.h" />
     <ClInclude Include="source\WaveEngine\Window.h" />
     <ClInclude Include="source\wavepch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="source\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="source\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="source\WaveEngine\Application.cpp" />

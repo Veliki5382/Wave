@@ -3,8 +3,9 @@
 
 #include "WaveEngine/Core.h"
 #include "WaveEngine/Window.h"
+#include "WaveEngine/Renderer/Context.h"
 
-#include "GLFW/include/GLFW/glfw3.h"
+#include "GLFW/glfw3.h"
 
 namespace wave {
 
@@ -34,7 +35,8 @@ namespace wave {
 
 	private:
 		GLFWwindow* m_Window;
-		 
+		Context* m_Context;
+
 		struct WindowData {
 			std::string Title = "Windows Window";
 			unsigned int Width = 0, Height = 0;
@@ -47,7 +49,5 @@ namespace wave {
 	};
 
 }
-
-
 
 #endif

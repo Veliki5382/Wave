@@ -71,6 +71,8 @@
       <Filter>WaveEngine</Filter>
     </ClInclude>
     <ClInclude Include="source\wavepch.h" />
+    <ClInclude Include="source\WaveEngine\Renderer\Context.h" />
+    <ClInclude Include="source\Platform\OpenGL\OpenGLContext.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Platform\Windows\WindowsInput.cpp">
@@ -98,5 +100,6 @@
       <Filter>WaveEngine</Filter>
     </ClCompile>
     <ClCompile Include="source\wavepch.cpp" />
+    <ClCompile Include="source\Platform\OpenGL\OpenGLContext.cpp" />
   </ItemGroup>
 </Project>

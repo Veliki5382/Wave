@@ -31,6 +31,8 @@ namespace wave {
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running;
 		LayerStack m_LayerStack;
+
+		unsigned int m_VertexBuffer, m_VertexArray, m_IndexBuffer;
 	
 	private:
 		static Application* s_Instance;
