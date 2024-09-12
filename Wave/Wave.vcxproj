@@ -141,6 +141,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="source\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="source\Platform\OpenGL\OpenGLIndexBuffer.h" />
+    <ClInclude Include="source\Platform\OpenGL\OpenGLVertexBuffer.h" />
     <ClInclude Include="source\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="source\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="source\Wave.h" />
@@ -159,11 +161,17 @@
     <ClInclude Include="source\WaveEngine\Log.h" />
     <ClInclude Include="source\WaveEngine\MouseButtonCodes.h" />
     <ClInclude Include="source\WaveEngine\Renderer\Context.h" />
+    <ClInclude Include="source\WaveEngine\Renderer\IndexBuffer.h" />
+    <ClInclude Include="source\WaveEngine\Renderer\Renderer.h" />
+    <ClInclude Include="source\WaveEngine\Renderer\Shader.h" />
+    <ClInclude Include="source\WaveEngine\Renderer\VertexBuffer.h" />
     <ClInclude Include="source\WaveEngine\Window.h" />
     <ClInclude Include="source\wavepch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="source\Platform\OpenGL\OpenGLIndexBuffer.cpp" />
+    <ClCompile Include="source\Platform\OpenGL\OpenGLVertexBuffer.cpp" />
     <ClCompile Include="source\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="source\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="source\WaveEngine\Application.cpp" />
@@ -172,6 +180,10 @@
     <ClCompile Include="source\WaveEngine\Layer.cpp" />
     <ClCompile Include="source\WaveEngine\LayerStack.cpp" />
     <ClCompile Include="source\WaveEngine\Log.cpp" />
+    <ClCompile Include="source\WaveEngine\Renderer\IndexBuffer.cpp" />
+    <ClCompile Include="source\WaveEngine\Renderer\Renderer.cpp" />
+    <ClCompile Include="source\WaveEngine\Renderer\Shader.cpp" />
+    <ClCompile Include="source\WaveEngine\Renderer\VertexBuffer.cpp" />
     <ClCompile Include="source\wavepch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>

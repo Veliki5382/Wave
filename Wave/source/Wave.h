@@ -5,7 +5,7 @@
 // ----------------------------------------------------------
 
 // Precompiled header
-//#include "source/wavepch.h"
+#include "wavepch.h"
 
 
 #include "WaveEngine/Core.h"
@@ -19,10 +19,16 @@
 #include "WaveEngine/Layer.h"
 #include "WaveEngine/LayerStack.h"
 #include "Platform/Windows/WindowsWindow.h"
+#include "Platform/Windows/WindowsInput.h"
 #include "WaveEngine/ImGui/ImGuiLayer.h"
 #include "WaveEngine/Input.h"
 #include "WaveEngine/KeyCodes.h"
 #include "WaveEngine/MouseButtonCodes.h"
+#include "WaveEngine/Renderer/Context.h"
+#include "Platform/OpenGL/OpenGLContext.h"
+#include "WaveEngine/Renderer/Shader.h"
+#include "WaveEngine/Renderer/VertexBuffer.h"
+#include "WaveEngine/Renderer/IndexBuffer.h"
 
 // ---- Entry point --------------------
 

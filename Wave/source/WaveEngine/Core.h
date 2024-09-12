@@ -35,7 +35,7 @@
 	#define WAVE_CORE_ASSERT(x, ...)
 #endif
 
-
 #define WAVE_BIND_FN(fn) std::bind(&fn, this, std::placeholders::_1)
+
 
 #endif // CORE_H

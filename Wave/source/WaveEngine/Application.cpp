@@ -60,36 +60,56 @@ namespace wave {
 		m_ImGuiLayer = new ImGuiLayer;
 		m_LayerStack.PushLayer(m_ImGuiLayer);
 
-		WAVE_CORE_ASSERT(gladLoadGLLoader((GLADloadproc)glfwGetProcAddress), "Failed to initialize GLAD");
-
 		glViewport(0, 0, 1280, 720);
 		glCall(glEnable(GL_BLEND));
 
 		glCall(glGenVertexArrays(1, &m_VertexArray));
 		glCall(glBindVertexArray(m_VertexArray));
-		
-		glCall(glGenBuffers(1, &m_VertexBuffer));
-		glCall(glBindBuffer(GL_ARRAY_BUFFER, m_VertexBuffer));
 		float vertices[4 * 3] = {
 		   -0.3f,   0.0f,   0.0f,
 			0.3f,   0.0f,   0.0f,
 			0.0f,  -0.5f,   0.0f,
 			0.0f,   0.5f,   0.0f
 		};
-		glCall(glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW));
+		m_VertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
+		m_VertexBuffer->Bind();
+
 		glCall(glEnableVertexAttribArray(0));
 		glCall(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0));
-
-		glCall(glGenBuffers(1, &m_IndexBuffer));
-		glCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_IndexBuffer));
-		unsigned int indices[2 * 3] = {
+		
+		uint32_t indices[2 * 3] = {
 			0, 1, 2,
 			0, 1, 3
 		};
-		glCall(glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW));
-		
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-		glBindVertexArray(0);
+		m_IndexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+		m_IndexBuffer->Bind();
+
+
+		std::string vertexShaderSrc = R"(
+			#version 330 core
+
+			layout(location = 0) in vec3 a_Position;
+			out vec3 v_Position;
+
+			void main() {
+				v_Position = a_Position + 1.0;	
+				gl_Position = vec4(a_Position, 1.0);
+			}
+		)";
+
+		std::string fragmentShaderSrc = R"(
+			#version 330 core
+
+			layout(location = 0) out vec4 o_Color;
+
+			in vec3 v_Position;
+
+			void main() {
+				o_Color = vec4(v_Position, 1.0);
+			}
+		)";
+		m_Shader.reset(new Shader(vertexShaderSrc, fragmentShaderSrc));
+		m_Shader->Bind();
 	}
 
 	Application::~Application() {
@@ -124,13 +144,11 @@ namespace wave {
 			glCall(glClearColor(0.2f, 0.2f, 0.2f, 1.0f));
 			glCall(glClear(unsigned int(GL_COLOR_BUFFER_BIT)));
 
-			glCall(glBindVertexArray(m_VertexArray));
-			glCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_IndexBuffer));
-			//glCall(glDrawArrays(GL_TRIANGLES, 0, 3 * sizeof(unsigned int)));
-			glCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0));
 			
-			glCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
-			glCall(glBindVertexArray(0));
+			//glCall(glDrawArrays(GL_TRIANGLES, 0, 3 * sizeof(unsigned int)));
+			glCall(glDrawElements(GL_TRIANGLES, m_IndexBuffer->GetCount(), GL_UNSIGNED_INT, 0));
+			
+			
 
 			for (auto it = m_LayerStack.begin(); it != m_LayerStack.end(); ++it) {
 				(*it)->OnUpdate();
