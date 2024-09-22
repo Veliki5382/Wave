@@ -1,10 +1,6 @@
 #include "wavepch.h"
 #include "Application.h"
 
-#include "Events/ApplicationEvent.h"
-#include "Events/MouseEvent.h"
-#include "Platform/Windows/WindowsWindow.h"
-#include "WaveEngine/Input.h"
 #include "GLAD/glad.h"
 
 #define glCall(x) glClearError();\
@@ -46,6 +42,7 @@ static bool glLogCall() {
 
 namespace wave {
 
+
 	Application* Application::s_Instance = nullptr;
 
 	Application::Application() {
@@ -63,20 +60,24 @@ namespace wave {
 		glViewport(0, 0, 1280, 720);
 		glCall(glEnable(GL_BLEND));
 
-		glCall(glGenVertexArrays(1, &m_VertexArray));
-		glCall(glBindVertexArray(m_VertexArray));
-		float vertices[4 * 3] = {
-		   -0.3f,   0.0f,   0.0f,
-			0.3f,   0.0f,   0.0f,
-			0.0f,  -0.5f,   0.0f,
-			0.0f,   0.5f,   0.0f
+		m_VertexArray.reset(VertexArray::Create());
+		m_VertexArray->Bind();
+
+		float vertices[4 * 7] = {
+		   -0.3f,  0.0f,  0.0f, 	1.0f, 0.0f, 0.8f, 1.0f,
+			0.3f,  0.0f,  0.0f, 	0.0f, 0.4f, 0.8f, 1.0f,
+			0.0f, -0.5f,  0.0f, 	1.0f, 0.5f, 0.2f, 1.0f,
+			0.0f,  0.5f,  0.0f, 	0.3f, 1.0f, 0.0f, 1.0f,
 		};
 		m_VertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
 		m_VertexBuffer->Bind();
-
-		glCall(glEnableVertexAttribArray(0));
-		glCall(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0));
 		
+		BufferLayout layout = {
+			{ ShaderDataType::Float3, "a_Position" },
+			{ ShaderDataType::Float4, "a_Color", true }
+		};
+		m_VertexBuffer->SetLayout(layout);
+
 		uint32_t indices[2 * 3] = {
 			0, 1, 2,
 			0, 1, 3
@@ -84,15 +85,19 @@ namespace wave {
 		m_IndexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		m_IndexBuffer->Bind();
 
+		m_VertexArray->AddVertexBuffer(m_VertexBuffer);
+		m_VertexArray->AddIndexBuffer(m_IndexBuffer);
 
 		std::string vertexShaderSrc = R"(
 			#version 330 core
 
 			layout(location = 0) in vec3 a_Position;
-			out vec3 v_Position;
+			layout(location = 1) in vec4 a_Color;
+
+			out vec4 v_Color;
 
 			void main() {
-				v_Position = a_Position + 1.0;	
+				v_Color = a_Color;	
 				gl_Position = vec4(a_Position, 1.0);
 			}
 		)";
@@ -102,10 +107,10 @@ namespace wave {
 
 			layout(location = 0) out vec4 o_Color;
 
-			in vec3 v_Position;
+			in vec4 v_Color;
 
 			void main() {
-				o_Color = vec4(v_Position, 1.0);
+				o_Color = v_Color;
 			}
 		)";
 		m_Shader.reset(new Shader(vertexShaderSrc, fragmentShaderSrc));
@@ -144,10 +149,8 @@ namespace wave {
 			glCall(glClearColor(0.2f, 0.2f, 0.2f, 1.0f));
 			glCall(glClear(unsigned int(GL_COLOR_BUFFER_BIT)));
 
-			
-			//glCall(glDrawArrays(GL_TRIANGLES, 0, 3 * sizeof(unsigned int)));
+			m_VertexArray->Bind();
 			glCall(glDrawElements(GL_TRIANGLES, m_IndexBuffer->GetCount(), GL_UNSIGNED_INT, 0));
-			
 			
 
 			for (auto it = m_LayerStack.begin(); it != m_LayerStack.end(); ++it) {
