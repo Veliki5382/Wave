@@ -74,7 +74,6 @@
     <ClInclude Include="source\WaveEngine\Renderer\Context.h" />
     <ClInclude Include="source\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="source\WaveEngine\Renderer\Shader.h" />
-    <ClInclude Include="source\WaveEngine\Renderer\Renderer.h" />
     <ClInclude Include="source\WaveEngine\Renderer\VertexBuffer.h" />
     <ClInclude Include="source\WaveEngine\Renderer\IndexBuffer.h" />
     <ClInclude Include="source\Platform\OpenGL\OpenGLVertexBuffer.h" />
@@ -82,6 +81,9 @@
     <ClInclude Include="source\WaveEngine\Renderer\BufferLayout.h" />
     <ClInclude Include="source\WaveEngine\Renderer\VertexArray.h" />
     <ClInclude Include="source\Platform\OpenGL\OpenGLVertexArray.h" />
+    <ClInclude Include="source\Platform\OpenGL\OpenGLRenderer.h" />
+    <ClInclude Include="source\WaveEngine\Renderer\RendererAPI.h" />
+    <ClInclude Include="source\WaveEngine\Renderer\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Platform\Windows\WindowsInput.cpp">
@@ -111,12 +113,14 @@
     <ClCompile Include="source\wavepch.cpp" />
     <ClCompile Include="source\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="source\WaveEngine\Renderer\Shader.cpp" />
-    <ClCompile Include="source\WaveEngine\Renderer\Renderer.cpp" />
     <ClCompile Include="source\WaveEngine\Renderer\VertexBuffer.cpp" />
     <ClCompile Include="source\WaveEngine\Renderer\IndexBuffer.cpp" />
     <ClCompile Include="source\Platform\OpenGL\OpenGLVertexBuffer.cpp" />
     <ClCompile Include="source\Platform\OpenGL\OpenGLIndexBuffer.cpp" />
     <ClCompile Include="source\Platform\OpenGL\OpenGLVertexArray.cpp" />
     <ClCompile Include="source\WaveEngine\Renderer\VertexArray.cpp" />
+    <ClCompile Include="source\Platform\OpenGL\OpenGLRenderer.cpp" />
+    <ClCompile Include="source\WaveEngine\Renderer\Renderer.cpp" />
+    <ClCompile Include="source\WaveEngine\Renderer\RendererAPI.cpp" />
   </ItemGroup>
 </Project>

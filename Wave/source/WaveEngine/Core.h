@@ -28,8 +28,8 @@
 #define WAVE_BIT(x) (1 << (x))
 
 #ifdef WAVE_ASSERT_ENABLED
-	#define WAVE_ASSERT(x, ...) { if(x == false) {WAVE_ERROR("Assertion failed: {0}.", __VA_ARGS__); __debugbreak(); } }
-	#define WAVE_CORE_ASSERT(x, ...) { if(x == false) {WAVE_CORE_ERROR("Assertion failed: {0}.", __VA_ARGS__); __debugbreak(); } }
+	#define WAVE_ASSERT(x, ...) { if(x == false) {WAVE_ERROR("Assertion failed: {0}", __VA_ARGS__); __debugbreak(); } }
+	#define WAVE_CORE_ASSERT(x, ...) { if(x == false) {WAVE_CORE_ERROR("Assertion failed: {0}", __VA_ARGS__); __debugbreak(); } }
 #else
 	#define WAVE_ASSERT(x, ...)
 	#define WAVE_CORE_ASSERT(x, ...)

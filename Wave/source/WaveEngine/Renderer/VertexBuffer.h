@@ -2,7 +2,6 @@
 #define VERTEX_BUFFER_H
 
 #include "WaveEngine/Core.h"
-#include "Renderer.h"
 #include "BufferLayout.h"
 
 namespace wave {

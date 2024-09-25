@@ -7,6 +7,7 @@
 #include "Platform/Windows/WindowsWindow.h"
 #include "Events/ApplicationEvent.h"
 #include "ImGui/ImGuiLayer.h"
+#include "Renderer/Renderer.h"
 #include "Renderer/VertexBuffer.h"
 #include "Renderer/VertexArray.h"
 #include "Renderer/IndexBuffer.h"
@@ -37,10 +38,8 @@ namespace wave {
 		bool m_Running;
 		LayerStack m_LayerStack;
 
-		std::shared_ptr<VertexBuffer> m_VertexBuffer;
-		std::shared_ptr<VertexArray> m_VertexArray;
-		std::shared_ptr<IndexBuffer> m_IndexBuffer;
-		std::shared_ptr<Shader> m_Shader;
+		std::shared_ptr<VertexArray> m_VertexArray, m_BackgroundVertexArray;
+		std::shared_ptr<Shader> m_Shader, m_BackgroundShader;
 	
 	private:
 		static Application* s_Instance;

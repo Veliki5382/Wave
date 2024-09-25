@@ -43,6 +43,9 @@ namespace wave {
 		
 		WAVE_CORE_ASSERT(vertexBuffer->GetLayout().GetElements().size(), "Vertex Buffer has no layout.");
 
+		glBindVertexArray(m_VertexArrayID);
+		vertexBuffer->Bind();
+
 		for (const auto& element : vertexBuffer->GetLayout()) {
 			WAVE_CORE_TRACE("Name: {0}, Size: {1}, Count: {2}", element.Name, element.Size, element.Count);
 			glEnableVertexAttribArray(element.Index);
@@ -59,9 +62,12 @@ namespace wave {
 		m_VertexBuffers.push_back(vertexBuffer);
 	}
 
-	void OpenGLVertexArray::AddIndexBuffer(const std::shared_ptr<IndexBuffer>& indexBuffer) {
+	void OpenGLVertexArray::SetIndexBuffer(const std::shared_ptr<IndexBuffer>& indexBuffer) {
 		
-		m_IndexBuffers.push_back(indexBuffer);
+		glBindVertexArray(m_VertexArrayID);
+		indexBuffer->Bind();
+		
+		m_IndexBuffer = indexBuffer;
 	}
 
 
