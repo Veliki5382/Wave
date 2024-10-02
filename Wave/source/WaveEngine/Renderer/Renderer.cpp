@@ -39,8 +39,8 @@ namespace wave {
 		Renderer::ClearColor(color.r, color.g, color.b, color.a);
 	}
 
-	void Renderer::Begin() {
-		s_Renderer->Begin();
+	void Renderer::Begin(OrthographicCamera& camera) {
+		s_Renderer->Begin(camera);
 	}
 
 	void Renderer::End() {

@@ -163,6 +163,7 @@
     <ClInclude Include="source\WaveEngine\Log.h" />
     <ClInclude Include="source\WaveEngine\MouseButtonCodes.h" />
     <ClInclude Include="source\WaveEngine\Renderer\BufferLayout.h" />
+    <ClInclude Include="source\WaveEngine\Renderer\OrthographicCamera.h" />
     <ClInclude Include="source\WaveEngine\Renderer\Context.h" />
     <ClInclude Include="source\WaveEngine\Renderer\IndexBuffer.h" />
     <ClInclude Include="source\WaveEngine\Renderer\Renderer.h" />
@@ -188,6 +189,7 @@
     <ClCompile Include="source\WaveEngine\LayerStack.cpp" />
     <ClCompile Include="source\WaveEngine\Log.cpp" />
     <ClCompile Include="source\WaveEngine\Renderer\IndexBuffer.cpp" />
+    <ClCompile Include="source\WaveEngine\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="source\WaveEngine\Renderer\Renderer.cpp" />
     <ClCompile Include="source\WaveEngine\Renderer\RendererAPI.cpp" />
     <ClCompile Include="source\WaveEngine\Renderer\Shader.cpp" />

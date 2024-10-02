@@ -7,12 +7,7 @@
 #include "Platform/Windows/WindowsWindow.h"
 #include "Events/ApplicationEvent.h"
 #include "ImGui/ImGuiLayer.h"
-#include "Renderer/Renderer.h"
-#include "Renderer/VertexBuffer.h"
-#include "Renderer/VertexArray.h"
-#include "Renderer/IndexBuffer.h"
-#include "Renderer/Shader.h"
-#include "Renderer/BufferLayout.h"
+
 
 namespace wave {
 
@@ -32,17 +27,15 @@ namespace wave {
 
 	private:
 		bool windowClosed(WindowClosedEvent& e);
+	
+	private:
+		static Application* s_Instance;
 		
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running;
 		LayerStack m_LayerStack;
-
-		std::shared_ptr<VertexArray> m_VertexArray, m_BackgroundVertexArray;
-		std::shared_ptr<Shader> m_Shader, m_BackgroundShader;
-	
-	private:
-		static Application* s_Instance;
+		
 	};
 
 	

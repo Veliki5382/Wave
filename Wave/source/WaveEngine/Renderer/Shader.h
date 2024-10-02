@@ -1,7 +1,10 @@
 #ifndef SHADER_H
 #define SHADER_H
 
+#include <glm/glm.hpp>
+
 #include "WaveEngine/Core.h"
+
 
 namespace wave {
 
@@ -14,6 +17,8 @@ namespace wave {
 
 		void Bind() const;
 		void Unbind() const;
+
+		void UploadUniform4f(std::string name, const glm::mat4& VPMatrix);
 
 	private:
 		uint32_t m_ShaderProgramID;

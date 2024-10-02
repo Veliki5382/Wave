@@ -4,6 +4,7 @@
 #include "WaveEngine/Core.h"
 #include "Shader.h"
 #include "VertexArray.h"
+#include "OrthographicCamera.h"
 
 namespace wave {
 
@@ -15,7 +16,7 @@ namespace wave {
 
 		virtual void ClearColor(float red, float green, float blue, float alpha) = 0;
 		
-		virtual void Begin() = 0;
+		virtual void Begin(OrthographicCamera& camera) = 0;
 		virtual void End() = 0;
 
 		virtual void Render(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray) = 0;

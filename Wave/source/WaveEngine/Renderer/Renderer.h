@@ -6,6 +6,8 @@
 #include "RendererAPI.h"
 #include "VertexArray.h"
 #include "Shader.h"
+#include "OrthographicCamera.h"
+
 
 namespace wave {
 
@@ -23,7 +25,7 @@ namespace wave {
 		static void ClearColor(float red, float green, float blue, float alpha);
 		static void ClearColor(const glm::vec4& color);
 
-		static void Begin();
+		static void Begin(OrthographicCamera& camera);
 		static void End();
 
 		static void Render(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray);

@@ -84,6 +84,7 @@
     <ClInclude Include="source\Platform\OpenGL\OpenGLRenderer.h" />
     <ClInclude Include="source\WaveEngine\Renderer\RendererAPI.h" />
     <ClInclude Include="source\WaveEngine\Renderer\Renderer.h" />
+    <ClInclude Include="source\WaveEngine\Renderer\OrthographicCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Platform\Windows\WindowsInput.cpp">
@@ -122,5 +123,6 @@
     <ClCompile Include="source\Platform\OpenGL\OpenGLRenderer.cpp" />
     <ClCompile Include="source\WaveEngine\Renderer\Renderer.cpp" />
     <ClCompile Include="source\WaveEngine\Renderer\RendererAPI.cpp" />
+    <ClCompile Include="source\WaveEngine\Renderer\OrthographicCamera.cpp" />
   </ItemGroup>
 </Project>
