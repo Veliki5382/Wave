@@ -7,7 +7,7 @@
 #include "Platform/Windows/WindowsWindow.h"
 #include "Events/ApplicationEvent.h"
 #include "ImGui/ImGuiLayer.h"
-
+#include "Core/Time.h"
 
 namespace wave {
 
@@ -35,7 +35,7 @@ namespace wave {
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running;
 		LayerStack m_LayerStack;
-		
+		Time m_Time;
 	};
 
 	

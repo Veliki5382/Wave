@@ -14,6 +14,7 @@ namespace wave {
 
 		m_Window = std::unique_ptr<Window>(Window::Create(WindowProps("Wave", 1280, 720)));
 		m_Window->SetEventCallbackFunction(WAVE_BIND_FN(Application::onEvent));
+		//m_Window->DisableVSync();
 
 		m_ImGuiLayer = new ImGuiLayer;
 		m_LayerStack.PushLayer(m_ImGuiLayer);
@@ -46,9 +47,12 @@ namespace wave {
 	void Application::Run() {
 		
 		while (m_Running) {
+			float currentTime = m_Time;
+			m_Time.UpdateTime();
+			m_Time.SetDeltaTime(m_Time - currentTime);
 
 			for (auto it = m_LayerStack.begin(); it != m_LayerStack.end(); ++it) {
-				(*it)->OnUpdate();
+				(*it)->OnUpdate(m_Time);
 			}
 
 			m_ImGuiLayer->Begin();

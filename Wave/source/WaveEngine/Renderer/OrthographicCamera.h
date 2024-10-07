@@ -19,9 +19,9 @@ namespace wave {
 		inline const float GetRotation() const { return m_Rotation; }
 		inline void SetRotation(float rotation) { m_Rotation = rotation; RecalculateMatrices(); }
 
-		inline const glm::mat4 GetProjectionMatrix() const { return m_ProjectionMatrix; }	
-		inline const glm::mat4 GetViewMatrix() const { return m_ViewMatrix; }
-		inline const glm::mat4 GetVPMatrix() const { return m_VPMatrix; }
+		inline const glm::mat4 GetProjectionMatrix() { RecalculateMatrices(); return m_ProjectionMatrix; }
+		inline const glm::mat4 GetViewMatrix() { RecalculateMatrices(); return m_ViewMatrix; }
+		inline const glm::mat4 GetVPMatrix() { RecalculateMatrices(); return m_VPMatrix; }
 
 	private:
 		void RecalculateMatrices();

@@ -7,7 +7,7 @@
 #include "VertexArray.h"
 #include "Shader.h"
 #include "OrthographicCamera.h"
-
+#include "Transform.h"
 
 namespace wave {
 
@@ -19,7 +19,7 @@ namespace wave {
 		};
 
 	public:
-		static void UseAPI(Renderer::API api = Renderer::API::OpenGL);
+		static void UseAPI(Renderer::API api);
 		inline static API& GetAPI() { return s_API; }
 
 		static void ClearColor(float red, float green, float blue, float alpha);
@@ -28,7 +28,7 @@ namespace wave {
 		static void Begin(OrthographicCamera& camera);
 		static void End();
 
-		static void Render(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray);
+		static void Render(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray, const Transform& ransform);
 
 	private:
 		static API s_API;

@@ -3,6 +3,7 @@
 
 #include "Core.h"
 #include "Events/Event.h"
+#include "Core/Time.h"
 
 namespace wave {
 
@@ -27,7 +28,7 @@ namespace wave {
 
 		virtual void OnAttach() {}
 		virtual void OnDettach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Time time) {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& e) {}
 

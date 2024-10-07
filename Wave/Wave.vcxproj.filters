@@ -4,6 +4,9 @@
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Platform\OpenGL">
+      <UniqueIdentifier>{1E7D2C1D-8A08-9AE1-9319-1DD6FF23F6E1}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Platform\Windows">
       <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
     </Filter>
@@ -16,8 +19,26 @@
     <Filter Include="WaveEngine\ImGui">
       <UniqueIdentifier>{78F5C99E-64EE-E8F0-8D20-CE757978C8FC}</UniqueIdentifier>
     </Filter>
+    <Filter Include="WaveEngine\Renderer">
+      <UniqueIdentifier>{348907DD-A0EA-E4EA-2958-2B9D95B81BAA}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\Platform\OpenGL\OpenGLContext.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Platform\OpenGL\OpenGLIndexBuffer.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Platform\OpenGL\OpenGLRenderer.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Platform\OpenGL\OpenGLVertexArray.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Platform\OpenGL\OpenGLVertexBuffer.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="source\Platform\Windows\WindowsInput.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
@@ -67,26 +88,56 @@
     <ClInclude Include="source\WaveEngine\MouseButtonCodes.h">
       <Filter>WaveEngine</Filter>
     </ClInclude>
+    <ClInclude Include="source\WaveEngine\Renderer\BufferLayout.h">
+      <Filter>WaveEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="source\WaveEngine\Renderer\Context.h">
+      <Filter>WaveEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="source\WaveEngine\Renderer\IndexBuffer.h">
+      <Filter>WaveEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="source\WaveEngine\Renderer\OrthographicCamera.h">
+      <Filter>WaveEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="source\WaveEngine\Renderer\Renderer.h">
+      <Filter>WaveEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="source\WaveEngine\Renderer\RendererAPI.h">
+      <Filter>WaveEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="source\WaveEngine\Renderer\Shader.h">
+      <Filter>WaveEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="source\WaveEngine\Renderer\VertexArray.h">
+      <Filter>WaveEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="source\WaveEngine\Renderer\VertexBuffer.h">
+      <Filter>WaveEngine\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="source\WaveEngine\Window.h">
       <Filter>WaveEngine</Filter>
     </ClInclude>
     <ClInclude Include="source\wavepch.h" />
-    <ClInclude Include="source\WaveEngine\Renderer\Context.h" />
-    <ClInclude Include="source\Platform\OpenGL\OpenGLContext.h" />
-    <ClInclude Include="source\WaveEngine\Renderer\Shader.h" />
-    <ClInclude Include="source\WaveEngine\Renderer\VertexBuffer.h" />
-    <ClInclude Include="source\WaveEngine\Renderer\IndexBuffer.h" />
-    <ClInclude Include="source\Platform\OpenGL\OpenGLVertexBuffer.h" />
-    <ClInclude Include="source\Platform\OpenGL\OpenGLIndexBuffer.h" />
-    <ClInclude Include="source\WaveEngine\Renderer\BufferLayout.h" />
-    <ClInclude Include="source\WaveEngine\Renderer\VertexArray.h" />
-    <ClInclude Include="source\Platform\OpenGL\OpenGLVertexArray.h" />
-    <ClInclude Include="source\Platform\OpenGL\OpenGLRenderer.h" />
-    <ClInclude Include="source\WaveEngine\Renderer\RendererAPI.h" />
-    <ClInclude Include="source\WaveEngine\Renderer\Renderer.h" />
-    <ClInclude Include="source\WaveEngine\Renderer\OrthographicCamera.h" />
+    <ClInclude Include="source\WaveEngine\Core\Time.h" />
+    <ClInclude Include="source\WaveEngine\Renderer\Transform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Platform\OpenGL\OpenGLIndexBuffer.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Platform\OpenGL\OpenGLRenderer.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Platform\OpenGL\OpenGLVertexArray.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Platform\OpenGL\OpenGLVertexBuffer.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="source\Platform\Windows\WindowsInput.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
@@ -111,18 +162,25 @@
     <ClCompile Include="source\WaveEngine\Log.cpp">
       <Filter>WaveEngine</Filter>
     </ClCompile>
+    <ClCompile Include="source\WaveEngine\Renderer\IndexBuffer.cpp">
+      <Filter>WaveEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="source\WaveEngine\Renderer\OrthographicCamera.cpp">
+      <Filter>WaveEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="source\WaveEngine\Renderer\Renderer.cpp">
+      <Filter>WaveEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="source\WaveEngine\Renderer\Shader.cpp">
+      <Filter>WaveEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="source\WaveEngine\Renderer\VertexArray.cpp">
+      <Filter>WaveEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="source\WaveEngine\Renderer\VertexBuffer.cpp">
+      <Filter>WaveEngine\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="source\wavepch.cpp" />
-    <ClCompile Include="source\Platform\OpenGL\OpenGLContext.cpp" />
-    <ClCompile Include="source\WaveEngine\Renderer\Shader.cpp" />
-    <ClCompile Include="source\WaveEngine\Renderer\VertexBuffer.cpp" />
-    <ClCompile Include="source\WaveEngine\Renderer\IndexBuffer.cpp" />
-    <ClCompile Include="source\Platform\OpenGL\OpenGLVertexBuffer.cpp" />
-    <ClCompile Include="source\Platform\OpenGL\OpenGLIndexBuffer.cpp" />
-    <ClCompile Include="source\Platform\OpenGL\OpenGLVertexArray.cpp" />
-    <ClCompile Include="source\WaveEngine\Renderer\VertexArray.cpp" />
-    <ClCompile Include="source\Platform\OpenGL\OpenGLRenderer.cpp" />
-    <ClCompile Include="source\WaveEngine\Renderer\Renderer.cpp" />
-    <ClCompile Include="source\WaveEngine\Renderer\RendererAPI.cpp" />
-    <ClCompile Include="source\WaveEngine\Renderer\OrthographicCamera.cpp" />
+    <ClCompile Include="source\WaveEngine\Renderer\Transform.cpp" />
   </ItemGroup>
 </Project>

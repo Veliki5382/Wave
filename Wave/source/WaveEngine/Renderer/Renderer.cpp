@@ -7,10 +7,8 @@
 
 namespace wave {
 
-	// For now, we are only supporting OpenGL
-	// TO DO: Add support for other APIs and dynamically change the API (user can choose)
-	Renderer::API s_API = Renderer::API::None;
-	std::unique_ptr<RendererAPI> Renderer::s_Renderer = nullptr;
+	Renderer::API s_API = Renderer::API::OpenGL;
+	std::unique_ptr<RendererAPI> Renderer::s_Renderer(new OpenGLRenderer());
 
 	void Renderer::UseAPI(Renderer::API api) {
 		
@@ -47,8 +45,8 @@ namespace wave {
 		s_Renderer->End();
 	}
 
-	void Renderer::Render(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray) {
-		s_Renderer->Render(shader, vertexArray);
+	void Renderer::Render(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray, const Transform& transform) {
+		s_Renderer->Render(shader, vertexArray, transform);
 	}
 
 }  // namespace wave

@@ -150,6 +150,7 @@
     <ClInclude Include="source\Wave.h" />
     <ClInclude Include="source\WaveEngine\Application.h" />
     <ClInclude Include="source\WaveEngine\Core.h" />
+    <ClInclude Include="source\WaveEngine\Core\Time.h" />
     <ClInclude Include="source\WaveEngine\EntryPoint.h" />
     <ClInclude Include="source\WaveEngine\Events\ApplicationEvent.h" />
     <ClInclude Include="source\WaveEngine\Events\Event.h" />
@@ -163,12 +164,13 @@
     <ClInclude Include="source\WaveEngine\Log.h" />
     <ClInclude Include="source\WaveEngine\MouseButtonCodes.h" />
     <ClInclude Include="source\WaveEngine\Renderer\BufferLayout.h" />
-    <ClInclude Include="source\WaveEngine\Renderer\OrthographicCamera.h" />
     <ClInclude Include="source\WaveEngine\Renderer\Context.h" />
     <ClInclude Include="source\WaveEngine\Renderer\IndexBuffer.h" />
+    <ClInclude Include="source\WaveEngine\Renderer\OrthographicCamera.h" />
     <ClInclude Include="source\WaveEngine\Renderer\Renderer.h" />
     <ClInclude Include="source\WaveEngine\Renderer\RendererAPI.h" />
     <ClInclude Include="source\WaveEngine\Renderer\Shader.h" />
+    <ClInclude Include="source\WaveEngine\Renderer\Transform.h" />
     <ClInclude Include="source\WaveEngine\Renderer\VertexArray.h" />
     <ClInclude Include="source\WaveEngine\Renderer\VertexBuffer.h" />
     <ClInclude Include="source\WaveEngine\Window.h" />
@@ -191,8 +193,8 @@
     <ClCompile Include="source\WaveEngine\Renderer\IndexBuffer.cpp" />
     <ClCompile Include="source\WaveEngine\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="source\WaveEngine\Renderer\Renderer.cpp" />
-    <ClCompile Include="source\WaveEngine\Renderer\RendererAPI.cpp" />
     <ClCompile Include="source\WaveEngine\Renderer\Shader.cpp" />
+    <ClCompile Include="source\WaveEngine\Renderer\Transform.cpp" />
     <ClCompile Include="source\WaveEngine\Renderer\VertexArray.cpp" />
     <ClCompile Include="source\WaveEngine\Renderer\VertexBuffer.cpp" />
     <ClCompile Include="source\wavepch.cpp">

@@ -29,6 +29,8 @@ namespace wave {
 		virtual inline void SetEventCallbackFunction(const EventCallbackFunction& callEvent) = 0;
 		virtual bool GetVSync() const = 0;
 		virtual inline void SetVSync(bool status) = 0;
+		inline void EnableVSync() { SetVSync(true); }
+		inline void DisableVSync() { SetVSync(false); }
 
 		virtual void OnUpdate() = 0;
 

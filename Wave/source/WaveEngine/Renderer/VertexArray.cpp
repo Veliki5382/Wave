@@ -1,9 +1,10 @@
 #include "wavepch.h"
 #include "VertexArray.h"
 #include "Renderer.h"
+#include "Renderer.cpp"
 #include "Platform/OpenGL/OpenGLVertexArray.h"
 
-wave::Renderer::API wave::Renderer::s_API;
+wave::Renderer::API wave::Renderer::s_API = wave::Renderer::API::OpenGL;
 
 namespace wave {
 

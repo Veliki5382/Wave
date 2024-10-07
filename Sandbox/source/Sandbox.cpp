@@ -8,7 +8,7 @@ public:
 	Layer()
 	: wave::Layer("Main Layer"), camera(-1.6f, 1.6f, 0.9f, -0.9f) {
 		
-		wave::Renderer::UseAPI(wave::Renderer::API::OpenGL);
+		//wave::Renderer::UseAPI(wave::Renderer::API::OpenGL);
 
 		vertexArray.reset(wave::VertexArray::Create());
 		vertexArray->Bind();
@@ -46,10 +46,10 @@ public:
 		backgroundVertexArray->Bind();
 
 		float backgroundVertices[] = {
-			-1.2f, -0.8f,  0.0f,
-			 1.2f,  0.8f,  0.0f,
-			 1.2f, -0.8f,  0.0f,
-			-1.2f,  0.8f,  0.0f,
+			-0.8f, -0.8f,  0.0f,
+			 0.8f,  0.8f,  0.0f,
+			 0.8f, -0.8f,  0.0f,
+			-0.8f,  0.8f,  0.0f,
 		};
 		std::shared_ptr<wave::VertexBuffer> backgroundVertexBuffer(wave::VertexBuffer::Create(backgroundVertices, sizeof(backgroundVertices)));
 		wave::BufferLayout backgroundLayout = {
@@ -75,11 +75,13 @@ public:
 			layout(location = 1) in vec4 a_Color;
 
 			uniform mat4 u_VPMatrix;
+			uniform mat4 u_Transform;
+
 			out vec4 v_Color;
 
 			void main() {
 				v_Color = a_Color;	
-				gl_Position = u_VPMatrix * vec4(a_Position, 1.0);
+				gl_Position = u_VPMatrix * u_Transform * vec4(a_Position, 1.0);
 			}
 		)";
 		std::string fragmentShaderSrc = R"(
@@ -101,9 +103,10 @@ public:
 			layout(location = 0) in vec3 a_Position;
 
 			uniform mat4 u_VPMatrix;
+			uniform mat4 u_Transform;
 
 			void main() {
-				gl_Position = u_VPMatrix * vec4(a_Position, 1.0);
+				gl_Position = u_VPMatrix * u_Transform * vec4(a_Position, 1.0);
 			}
 		)";
 		std::string backgroundFragmentShaderSrc = R"(
@@ -119,45 +122,53 @@ public:
 		shader.reset(new wave::Shader(vertexShaderSrc, fragmentShaderSrc));
 		backgroundShader.reset(new wave::Shader(backgroundVertexShaderSrc, backgroundFragmentShaderSrc));
 
+		for (int i = 0; i < 10; ++i) {
+			for (int j = 0; j < 10; ++j) {
+				transform[i][j].Scale(0.15f, 0.15f);
+				transform[i][j].Translate(glm::vec3(1.8f * float(j), 1.8f * float(i), 0.0f));
+			}
+		}
 	}
+		 
+	void OnUpdate(wave::Time time) override {
 		
-	void OnUpdate() override {
-		
+		float dt = time.GetDeltaTime();
+
 		position = camera.GetPosition();
 		rotation = camera.GetRotation();
 
-		std::cout << "Position: " << position.x << ", " << position.y << ", " << position.z << std::endl;
-		// --- When compiled camera not working, things not rendering??? ---
-		//WAVE_TRACE("{0}, {1}, {2}.", position.x, position.y, position.z);
-
 		if (wave::Input::GetKeyState(WAVE_KEY_W)) {
-			position.y += positionSpeed;
+			position.y += positionSpeed * dt;
 		}
 		if (wave::Input::GetKeyState(WAVE_KEY_S)) {
-			position.y -= positionSpeed;
+			position.y -= positionSpeed * dt;
 		}
 		if (wave::Input::GetKeyState(WAVE_KEY_A)) {
-			position.x -= positionSpeed;
+			position.x -= positionSpeed * dt;
 		}
 		if (wave::Input::GetKeyState(WAVE_KEY_D)) {
-			position.x += positionSpeed;
+			position.x += positionSpeed * dt;
 		}
 		if (wave::Input::GetKeyState(WAVE_KEY_Q)) {
-			rotation += rotationSpeed;
+			rotation += rotationSpeed * dt;
 		}
 		if (wave::Input::GetKeyState(WAVE_KEY_E)) {
-			rotation -= rotationSpeed;
+			rotation -= rotationSpeed * dt;
 		}
 
 		camera.SetPosition(position);
 		camera.SetRotation(rotation);
-
+		
 		wave::Renderer::ClearColor(0.2f, 0.2f, 0.2f, 1.0f);
 
 		wave::Renderer::Begin(camera);
 
-		wave::Renderer::Render(backgroundShader, backgroundVertexArray);
-		wave::Renderer::Render(shader, vertexArray);
+		for (int i = 0; i < 10; ++i) {
+			for (int j = 0; j < 10; ++j) {
+				wave::Renderer::Render(backgroundShader, backgroundVertexArray, transform[i][j]);
+			}
+		}
+		wave::Renderer::Render(shader, vertexArray, wave::Transform(glm::mat4(1.0f)));
 
 		wave::Renderer::End();
 	}
@@ -186,11 +197,12 @@ public:
 private:
 	wave::OrthographicCamera camera;
 
+	wave::Transform transform[10][10];
+
 	glm::vec3 position;
-	float positionSpeed = 0.02f;
-	
+	float positionSpeed = 1.0f;
 	float rotation;
-	float rotationSpeed = 1.0f;
+	float rotationSpeed = 50.0f;
 
 	std::shared_ptr<wave::VertexArray> vertexArray, backgroundVertexArray;
 	std::shared_ptr<wave::Shader> shader, backgroundShader;

@@ -10,7 +10,7 @@ namespace wave {
 		
 		spdlog::set_pattern("%^[%n][%l][%H:%M:%S:%e %p]%$ %v");
 
-		s_ClientLog = spdlog::stdout_color_mt("APPLICATION");
+		s_ClientLog = spdlog::stdout_color_mt("USER");
 		s_ClientLog->set_level(spdlog::level::trace);
 
 		s_CoreLog = spdlog::stdout_color_mt("WAVE");

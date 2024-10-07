@@ -24,13 +24,14 @@
 #include "WaveEngine/Input.h"
 #include "WaveEngine/KeyCodes.h"
 #include "WaveEngine/MouseButtonCodes.h"
-#include "WaveEngine/Renderer/Context.h"
+#include "WaveEngine/Renderer/Renderer.h"
+#include "WaveEngine/Renderer/RendererAPI.h"
 #include "WaveEngine/Renderer/Shader.h"
+#include "WaveEngine/Renderer/Context.h"
 #include "WaveEngine/Renderer/VertexBuffer.h"
 #include "WaveEngine/Renderer/IndexBuffer.h"
 #include "WaveEngine/Renderer/VertexArray.h"
-#include "WaveEngine/Renderer/Renderer.h"
-#include "WaveEngine/Renderer/RendererAPI.h"
+#include "WaveEngine/Core/Time.h"
 
 // ---- Entry point --------------------
 

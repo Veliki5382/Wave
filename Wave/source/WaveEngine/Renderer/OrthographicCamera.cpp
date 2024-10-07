@@ -7,7 +7,7 @@ namespace wave {
 
 	OrthographicCamera::OrthographicCamera(float left, float right, float up, float down, float nearBorder, float farBorder)
 		: m_ProjectionMatrix(glm::ortho(left, right, down, up, nearBorder, farBorder)), m_ViewMatrix(glm::mat4(1.0f)),
-			m_VPMatrix(m_ProjectionMatrix * m_ViewMatrix), m_Position(0.0f), m_Rotation(0.0f) {}
+		m_VPMatrix(m_ProjectionMatrix * m_ViewMatrix), m_Position(0.0f), m_Rotation(0.0f) {}
 
 	void OrthographicCamera::RecalculateMatrices() {
 		
