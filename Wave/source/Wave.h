@@ -26,7 +26,7 @@
 #include "WaveEngine/MouseButtonCodes.h"
 #include "WaveEngine/Renderer/Renderer.h"
 #include "WaveEngine/Renderer/RendererAPI.h"
-#include "WaveEngine/Renderer/Shader.h"
+#include "Platform/OpenGL/OpenGLShader.h"
 #include "WaveEngine/Renderer/Context.h"
 #include "WaveEngine/Renderer/VertexBuffer.h"
 #include "WaveEngine/Renderer/IndexBuffer.h"

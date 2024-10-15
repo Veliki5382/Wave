@@ -121,6 +121,7 @@
     <ClInclude Include="source\wavepch.h" />
     <ClInclude Include="source\WaveEngine\Core\Time.h" />
     <ClInclude Include="source\WaveEngine\Renderer\Transform.h" />
+    <ClInclude Include="source\Platform\OpenGL\OpenGLShader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Platform\OpenGL\OpenGLContext.cpp">
@@ -182,5 +183,6 @@
     </ClCompile>
     <ClCompile Include="source\wavepch.cpp" />
     <ClCompile Include="source\WaveEngine\Renderer\Transform.cpp" />
+    <ClCompile Include="source\Platform\OpenGL\OpenGLShader.cpp" />
   </ItemGroup>
 </Project>

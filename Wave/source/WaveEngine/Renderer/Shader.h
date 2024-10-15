@@ -13,15 +13,15 @@ namespace wave {
 	public:
 		Shader() {}
 		Shader(std::string& vertexSrc, std::string& fragmentSrc);
-		~Shader();
+		virtual ~Shader() = default;
 
-		void Bind() const;
-		void Unbind() const;
+		virtual void Bind() const = 0;
+		virtual void Unbind() const = 0;
 
-		void UploadUniform4f(std::string name, const glm::mat4& VPMatrix);
+		virtual void SetColor(const glm::vec4& color) = 0;
+		virtual void UploadUniform4f(std::string name, const glm::mat4& VPMatrix) = 0;
 
-	private:
-		uint32_t m_ShaderProgramID;
+		static Shader* Create(std::string& vertexSrc, std::string& fragmentSrc);
 	};
 
 }  // namespace wave

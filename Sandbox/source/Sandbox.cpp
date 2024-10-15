@@ -1,6 +1,6 @@
 #include <Wave.h>
 #include "ImGui/imgui.h"
-
+#include "glm/gtc/matrix_transform.hpp"
 
 class Layer : public wave::Layer {
 
@@ -114,13 +114,15 @@ public:
 
 			layout(location = 0) out vec4 o_Color;
 
+			uniform vec4 u_Color;
+
 			void main() {
-				o_Color = vec4(0.29f, 0.19f, 0.28f, 1.0f);
+				o_Color = u_Color;
 			}
 		)";
 
-		shader.reset(new wave::Shader(vertexShaderSrc, fragmentShaderSrc));
-		backgroundShader.reset(new wave::Shader(backgroundVertexShaderSrc, backgroundFragmentShaderSrc));
+		shader.reset(wave::Shader::Create(vertexShaderSrc, fragmentShaderSrc));
+		backgroundShader.reset(wave::Shader::Create(backgroundVertexShaderSrc, backgroundFragmentShaderSrc));
 
 		for (int i = 0; i < 10; ++i) {
 			for (int j = 0; j < 10; ++j) {
@@ -155,6 +157,18 @@ public:
 		if (wave::Input::GetKeyState(WAVE_KEY_E)) {
 			rotation -= rotationSpeed * dt;
 		}
+		if (wave::Input::GetKeyState(WAVE_KEY_LEFT)) {
+			playerPos.x -= positionSpeed * dt;
+		}
+		if (wave::Input::GetKeyState(WAVE_KEY_RIGHT)) {
+			playerPos.x += positionSpeed * dt;
+		}
+		if (wave::Input::GetKeyState(WAVE_KEY_UP)) {
+			playerPos.y += positionSpeed * dt;
+		}
+		if (wave::Input::GetKeyState(WAVE_KEY_DOWN)) {
+			playerPos.y -= positionSpeed * dt;
+		}
 
 		camera.SetPosition(position);
 		camera.SetRotation(rotation);
@@ -165,10 +179,11 @@ public:
 
 		for (int i = 0; i < 10; ++i) {
 			for (int j = 0; j < 10; ++j) {
+				backgroundShader->SetColor(glm::vec4(i * 0.1f, (10-j) * 0.1f, i * 0.05f + j * 0.05f, 1.0f));
 				wave::Renderer::Render(backgroundShader, backgroundVertexArray, transform[i][j]);
 			}
 		}
-		wave::Renderer::Render(shader, vertexArray, wave::Transform(glm::mat4(1.0f)));
+		wave::Renderer::Render(shader, vertexArray, glm::translate(glm::mat4(1.0f), playerPos));
 
 		wave::Renderer::End();
 	}
@@ -199,7 +214,7 @@ private:
 
 	wave::Transform transform[10][10];
 
-	glm::vec3 position;
+	glm::vec3 position, playerPos = glm::vec3(0.0f);
 	float positionSpeed = 1.0f;
 	float rotation;
 	float rotationSpeed = 50.0f;
